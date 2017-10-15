@@ -23,5 +23,11 @@ function init() {
     crc2.beginPath();
     crc2.arc(200, 50, 40, 0, 2 * Math.PI);
     crc2.fill();
+    crc2.fillStyle = "rgb(0,0,200)";
+    crc2.beginPath();
+    crc2.moveTo(70, 120);
+    crc2.lineTo(120, 70);
+    crc2.lineTo(120, 170);
+    crc2.fill();
 }
 //# sourceMappingURL=Main.js.map
