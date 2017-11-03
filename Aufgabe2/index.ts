@@ -11,7 +11,7 @@ let crc2: CanvasRenderingContext2D;
 
 
 function ski2(): void {
-    let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
+    let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0]; //Array für den Fall dass mehrere Canvas vorhanden sind
 
     crc2 = canvas.getContext("2d");
 
