@@ -22,7 +22,7 @@ namespace aufgabe3 {
 
 
     function ski2(): void {
-        let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
+        let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0]; //Array für den Fall dass mehrere Canvas vorhanden sind
 
         crc2 = canvas.getContext("2d");
 
@@ -66,7 +66,6 @@ namespace aufgabe3 {
             console.log(x);
             drawTree(x, y, "#008000");
         }
-
 
         for (let i: number = 0; i < 1; i++) {
             gondelX[i] = 0;
