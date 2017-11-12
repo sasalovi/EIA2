@@ -3,7 +3,7 @@ namespace aufgabe4 {
     //Aufgabe: Aufgabe 4
     //Name: Markus Sasalovici
     //Matrikel: 256027
-    //Datum: 26.10.2017 
+    //Datum: 12.11.2017 
     //    
     //Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 
@@ -204,7 +204,7 @@ namespace aufgabe4 {
 
         for (let i: number = 0; i < skiAnimate.length; i++) {
             if (skiAnimate[i].x > 800) {
-                skiAnimate[i].x = 0;
+                skiAnimate[i].x = 0 - Math.random()* 200;
                 skiAnimate[i].y = 230;
             }
 //            fahrerY[i] += 1.7;
