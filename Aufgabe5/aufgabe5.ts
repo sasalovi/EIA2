@@ -75,7 +75,7 @@ namespace aufgabe5 {
 
         for (let i: number = 0; i < 3; i++) {
             let s: Ski = new Ski(0, 230);
-            s.setRandomStyle();
+
             skiClass[i] = s;
         }
 

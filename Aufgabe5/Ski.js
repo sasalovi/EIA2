@@ -4,6 +4,7 @@ var aufgabe5;
         constructor(_x, _y) {
             this.x = _x - Math.random() * 200;
             this.y = _y;
+            this.color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
         }
         update() {
             this.move();
@@ -27,9 +28,6 @@ var aufgabe5;
             aufgabe5.crc2.moveTo(this.x - 10, this.y - 5);
             aufgabe5.crc2.lineTo(this.x + 15, this.y + 4);
             aufgabe5.crc2.stroke();
-        }
-        setRandomStyle() {
-            this.color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
         }
     }
     aufgabe5.Ski = Ski;

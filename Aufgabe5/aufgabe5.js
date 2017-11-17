@@ -54,7 +54,6 @@ var aufgabe5;
         }
         for (let i = 0; i < 3; i++) {
             let s = new aufgabe5.Ski(0, 230);
-            s.setRandomStyle();
             skiClass[i] = s;
         }
         for (let i = 0; i < 140; i++) {
