@@ -7,7 +7,7 @@ var aufgabe5;
     //    
     //Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
     window.addEventListener("load", ski2);
-    let snowClass = [];
+    let snowClass = []; //Arrays erstellen
     let skiClass = [];
     let cloudClass = [];
     let liftClass = [];
@@ -49,7 +49,7 @@ var aufgabe5;
             drawTree(x, y, "#008000");
         }
         for (let i = 0; i < 1; i++) {
-            let s = new aufgabe5.Lift(0, 100);
+            let s = new aufgabe5.Lift(0, 100); //new �bergibt die Werte an den Constructor
             liftClass[i] = s;
         }
         for (let i = 0; i < 3; i++) {
@@ -61,8 +61,8 @@ var aufgabe5;
             snowClass[i] = s;
         }
         for (let i = 0; i < 3; i++) {
-            let s = new aufgabe5.Wolke(0, 0);
-            cloudClass[i] = s;
+            let s = new aufgabe5.Wolke(0, 0); //Instanz der Methode wird erstellt
+            cloudClass[i] = s; //Wolke wird in das Array geladen
         }
         image = aufgabe5.crc2.getImageData(0, 0, 800, 600);
         animate();
@@ -81,7 +81,7 @@ var aufgabe5;
         }
         //Wolke
         for (let i = 0; i < cloudClass.length; i++) {
-            let s = cloudClass[i];
+            let s = cloudClass[i]; //Wolke an Stelle [i] aus dem Array laden und per s.update an die Klasse �bergeben
             s.update();
         }
         for (let i = 0; i < liftClass.length; i++) {

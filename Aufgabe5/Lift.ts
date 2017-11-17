@@ -4,8 +4,8 @@ namespace aufgabe5 {
         y: number;
 
         constructor(_x: number, _y: number) {
-            this.x = _x ;
-            this.y = _y;
+            this.x = _x ; //Werte werden von new an Constructor übergeben
+            this.y = _y; //mit this.y bzw this.x übergibt man die Werte an x und y oben in der Funktion
         }
 
         update(): void {

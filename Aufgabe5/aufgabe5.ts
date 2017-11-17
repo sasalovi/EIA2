@@ -11,7 +11,7 @@ namespace aufgabe5 {
 
     export let crc2: CanvasRenderingContext2D;
 
-    let snowClass: Schnee[] = [];
+    let snowClass: Schnee[] = []; //Arrays erstellen
     let skiClass: Ski[] = [];
     let cloudClass: Wolke[] = [];
     let liftClass: Lift[] = [];
@@ -67,8 +67,8 @@ namespace aufgabe5 {
         }
 
         for (let i: number = 0; i < 1; i++) {
-            let s: Lift = new Lift(0, 100);
-
+            let s: Lift = new Lift(0, 100); //new übergibt die Werte an den Constructor
+                                        
             liftClass[i] = s;
 
         }
@@ -87,9 +87,9 @@ namespace aufgabe5 {
         }
 
         for (let i: number = 0; i < 3; i++) {
-            let s: Wolke = new Wolke(0, 0);
+            let s: Wolke = new Wolke(0, 0); //Instanz der Methode wird erstellt
 
-            cloudClass[i] = s;
+            cloudClass[i] = s; //Wolke wird in das Array geladen
 
         }
 
@@ -116,7 +116,7 @@ namespace aufgabe5 {
 
         //Wolke
         for (let i: number = 0; i < cloudClass.length; i++) {
-            let s: Wolke = cloudClass[i];
+            let s: Wolke = cloudClass[i]; //Wolke an Stelle [i] aus dem Array laden und per s.update an die Klasse übergeben
             s.update();
         }
         
