@@ -6,7 +6,7 @@ var aufgabe5;
             this.y = _y + Math.random() * 100 + 80;
         }
         update() {
-            this.move();
+            this.move(); //this f�r Zugriff auf inhalte der Klasse
             this.draw();
         }
         move() {
@@ -30,4 +30,4 @@ var aufgabe5;
     }
     aufgabe5.Wolke = Wolke;
 })(aufgabe5 || (aufgabe5 = {}));
-//# sourceMappingURL=wolke.js.map
+//# sourceMappingURL=Wolke.js.map

@@ -6,7 +6,7 @@ var aufgabe5;
             this.y = _y; //mit this.y bzw this.x �bergibt man die Werte an x und y oben in der Funktion
         }
         update() {
-            this.move();
+            this.move(); //this f�r Zugriff auf inhalte der Klasse
             this.draw();
         }
         move() {

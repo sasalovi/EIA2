@@ -4,10 +4,10 @@ var aufgabe5;
         constructor(_x, _y) {
             this.x = _x - Math.random() * 200;
             this.y = _y;
-            this.color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+            this.color = "hsl(" + Math.random() * 360 + ", 100%, 50%)"; //Zufallsfarbe
         }
         update() {
-            this.move();
+            this.move(); //this f�r Zugriff auf inhalte der Klasse
             this.draw();
         }
         move() {

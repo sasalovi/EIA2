@@ -9,7 +9,7 @@ namespace aufgabe5 {
 
     window.addEventListener("load", ski2);
 
-    export let crc2: CanvasRenderingContext2D;
+    export let crc2: CanvasRenderingContext2D; //variable Dateien im selben Namespace zugänglich machen
 
     let snowClass: Schnee[] = []; //Arrays erstellen
     let skiClass: Ski[] = [];
@@ -25,7 +25,8 @@ namespace aufgabe5 {
 
         crc2 = canvas.getContext("2d");
 
-
+        //Statische Objekte zeichnen
+        
         //Himmel
         crc2.fillStyle = "#26e2dc";
         crc2.fillRect(0, 0, 800, 600);
@@ -66,67 +67,69 @@ namespace aufgabe5 {
             drawTree(x, y, "#008000");
         }
 
+        
+        //Werte werden Klassen übergeben
+        
         for (let i: number = 0; i < 1; i++) {
-            let s: Lift = new Lift(0, 100); //new übergibt die Werte an den Constructor
-                                        
+            let s: Lift = new Lift(0, 100); //Instanz der Methode wird erstellt, new übergibt die Werte an den Constructor der Klasse Lift                             
             liftClass[i] = s;
 
         }
 
         for (let i: number = 0; i < 3; i++) {
-            let s: Ski = new Ski(0, 230);
-
+            let s: Ski = new Ski(0, 230); //Instanz der Methode wird erstellt, new übergibt die Werte an den Constructor der Klasse Ski
             skiClass[i] = s;
         }
 
 
         for (let i: number = 0; i < 140; i++) {
-            let s: Schnee = new Schnee(0, 0);
-
+            let s: Schnee = new Schnee(0, 0); //Instanz der Methode wird erstellt, new übergibt die Werte an den Constructor der Klasse Schnee
             snowClass[i] = s;
         }
 
         for (let i: number = 0; i < 3; i++) {
             let s: Wolke = new Wolke(0, 0); //Instanz der Methode wird erstellt
-
             cloudClass[i] = s; //Wolke wird in das Array geladen
 
         }
 
 
-        image = crc2.getImageData(0, 0, 800, 600);
+        image = crc2.getImageData(0, 0, 800, 600); //Bild speichern
 
         animate();
     }
 
     function animate(): void {
         crc2.clearRect(0, 0, 800, 600); // hier Hintergrund restaurieren
-        crc2.putImageData(image, 0, 0);
+        crc2.putImageData(image, 0, 0); //gespeichertes Bild wieder einfügen
 
+        //Zeichnen mit zuvor übergebenen Werten
+        
         for (let i: number = 0; i < skiClass.length; i++) {
-            let s: Ski = skiClass[i];
+            let s: Ski = skiClass[i]; //Ski an Stelle [i] aus dem Array laden und per s.update an die Klasse übergeben
             s.update();
         }
         
         //Snowflakes
         for (let i: number = 0; i < snowClass.length; i++) {
-            let s: Schnee = snowClass[i];
-            s.update();
+            let s: Schnee = snowClass[i]; //Wolke an Stelle [i] aus dem Array laden und per s.update an die Klasse übergeben
+            s.update(); //Methodenaufruf 
         }
 
         //Wolke
         for (let i: number = 0; i < cloudClass.length; i++) {
-            let s: Wolke = cloudClass[i]; //Wolke an Stelle [i] aus dem Array laden und per s.update an die Klasse übergeben
+            let s: Wolke = cloudClass[i]; //s definiert eine variable welche dem Objekt i der Klasse wolke entspricht und updated dieses objekt
+                                            //Wolke an Stelle [i] aus dem Array laden und per s.update an die Klasse übergeben
             s.update();
         }
         
         for (let i: number = 0; i < liftClass.length; i++) {
-            let s: Lift = liftClass[i];
+            let s: Lift = liftClass[i]; //Wolke an Stelle [i] aus dem Array laden und per s.update an die Klasse übergeben
             s.update();
         }
 
 
-        window.setTimeout(animate, 20);
+        window.setTimeout(animate, 20); //
     }
 
     //Bäume

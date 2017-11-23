@@ -9,7 +9,7 @@ namespace aufgabe5 {
         }
 
         update(): void {
-            this.move();
+            this.move(); //this für Zugriff auf inhalte der Klasse
             this.draw();
         }
         

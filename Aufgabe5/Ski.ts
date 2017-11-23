@@ -7,11 +7,11 @@ namespace aufgabe5 {
         constructor(_x: number, _y: number) {
             this.x = _x - Math.random() * 200;
             this.y = _y;
-            this.color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+            this.color = "hsl(" + Math.random() * 360 + ", 100%, 50%)"; //Zufallsfarbe
         }
 
         update(): void {
-            this.move();
+            this.move(); //this für Zugriff auf inhalte der Klasse
             this.draw();
         }
         

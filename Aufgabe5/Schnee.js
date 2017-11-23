@@ -6,7 +6,7 @@ var aufgabe5;
             this.y = _y + Math.random() * 600;
         }
         update() {
-            this.move();
+            this.move(); //this f�r Zugriff auf inhalte der Klasse
             this.draw();
         }
         move() {

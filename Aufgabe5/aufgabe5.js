@@ -15,6 +15,7 @@ var aufgabe5;
     function ski2() {
         let canvas = document.getElementsByTagName("canvas")[0]; //Array f�r den Fall dass mehrere Canvas vorhanden sind
         aufgabe5.crc2 = canvas.getContext("2d");
+        //Statische Objekte zeichnen
         //Himmel
         aufgabe5.crc2.fillStyle = "#26e2dc";
         aufgabe5.crc2.fillRect(0, 0, 800, 600);
@@ -48,47 +49,50 @@ var aufgabe5;
             let y = 350 + Math.random() * 30;
             drawTree(x, y, "#008000");
         }
+        //Werte werden Klassen �bergeben
         for (let i = 0; i < 1; i++) {
-            let s = new aufgabe5.Lift(0, 100); //new �bergibt die Werte an den Constructor
+            let s = new aufgabe5.Lift(0, 100); //Instanz der Methode wird erstellt, new �bergibt die Werte an den Constructor der Klasse Lift                             
             liftClass[i] = s;
         }
         for (let i = 0; i < 3; i++) {
-            let s = new aufgabe5.Ski(0, 230);
+            let s = new aufgabe5.Ski(0, 230); //Instanz der Methode wird erstellt, new �bergibt die Werte an den Constructor der Klasse Ski
             skiClass[i] = s;
         }
         for (let i = 0; i < 140; i++) {
-            let s = new aufgabe5.Schnee(0, 0);
+            let s = new aufgabe5.Schnee(0, 0); //Instanz der Methode wird erstellt, new �bergibt die Werte an den Constructor der Klasse Schnee
             snowClass[i] = s;
         }
         for (let i = 0; i < 3; i++) {
             let s = new aufgabe5.Wolke(0, 0); //Instanz der Methode wird erstellt
             cloudClass[i] = s; //Wolke wird in das Array geladen
         }
-        image = aufgabe5.crc2.getImageData(0, 0, 800, 600);
+        image = aufgabe5.crc2.getImageData(0, 0, 800, 600); //Bild speichern
         animate();
     }
     function animate() {
         aufgabe5.crc2.clearRect(0, 0, 800, 600); // hier Hintergrund restaurieren
-        aufgabe5.crc2.putImageData(image, 0, 0);
+        aufgabe5.crc2.putImageData(image, 0, 0); //gespeichertes Bild wieder einf�gen
+        //Zeichnen mit zuvor �bergebenen Werten
         for (let i = 0; i < skiClass.length; i++) {
-            let s = skiClass[i];
+            let s = skiClass[i]; //Ski an Stelle [i] aus dem Array laden und per s.update an die Klasse �bergeben
             s.update();
         }
         //Snowflakes
         for (let i = 0; i < snowClass.length; i++) {
-            let s = snowClass[i];
-            s.update();
+            let s = snowClass[i]; //Wolke an Stelle [i] aus dem Array laden und per s.update an die Klasse �bergeben
+            s.update(); //Methodenaufruf 
         }
         //Wolke
         for (let i = 0; i < cloudClass.length; i++) {
-            let s = cloudClass[i]; //Wolke an Stelle [i] aus dem Array laden und per s.update an die Klasse �bergeben
+            let s = cloudClass[i]; //s definiert eine variable welche dem Objekt i der Klasse wolke entspricht und updated dieses objekt
+            //Wolke an Stelle [i] aus dem Array laden und per s.update an die Klasse �bergeben
             s.update();
         }
         for (let i = 0; i < liftClass.length; i++) {
-            let s = liftClass[i];
+            let s = liftClass[i]; //Wolke an Stelle [i] aus dem Array laden und per s.update an die Klasse �bergeben
             s.update();
         }
-        window.setTimeout(animate, 20);
+        window.setTimeout(animate, 20); //
     }
     //B�ume
     function drawTree(_x, _y, _color) {

@@ -5,11 +5,11 @@ namespace aufgabe5 {
 
         constructor(_x: number, _y: number) {
             this.x = _x + Math.random() * 800;
-            this.y = _y + Math.random()* 100 +80;
+            this.y = _y + Math.random() * 100 + 80;
         }
 
         update(): void {
-            this.move();
+            this.move(); //this für Zugriff auf inhalte der Klasse
             this.draw();
         }
         
