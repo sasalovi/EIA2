@@ -1,7 +1,6 @@
 namespace aufgabe6 {
     export class Schnee extends Movingshapes {
-        x: number;
-        y: number;
+
 
         constructor(_x: number, _y: number) {
             super(_x + Math.random() * 800, _y + Math.random() * 600);

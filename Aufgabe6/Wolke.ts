@@ -1,18 +1,17 @@
 namespace aufgabe6 {
     export class Wolke extends Movingshapes {
-        x: number;
-        y: number;
+
 
         constructor(_x: number, _y: number) {
-            super(_x+ Math.random() * 800,_y+ Math.random() * 100 + 80);
+            super(_x + Math.random() * 800, _y + Math.random() * 100 + 80);
         }
 
-        
+
         move(): void {
             if (this.x > 800) {
                 this.x = Math.random();
             }
-            
+
             this.x += 2;
         }
 

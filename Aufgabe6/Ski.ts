@@ -1,7 +1,6 @@
 namespace aufgabe6 {
     export class Ski extends Movingshapes{
-        x: number;
-        y: number;
+
         color: string;
 
         constructor(_x: number, _y: number) {

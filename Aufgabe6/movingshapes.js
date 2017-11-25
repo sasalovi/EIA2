@@ -18,4 +18,4 @@ var aufgabe6;
     }
     aufgabe6.Movingshapes = Movingshapes;
 })(aufgabe6 || (aufgabe6 = {}));
-//# sourceMappingURL=movingshapes.js.map
+//# sourceMappingURL=Movingshapes.js.map
