@@ -72,11 +72,11 @@ namespace StudiVZ {
     function queryData(_matrikel: number): string {
         for (var i: number = 0; i < students.length; i++) {
             if (students[i].matrikelnummer == _matrikel) {
-                let matrikelAus: string = "Matrikelnummer:" + students[i].matrikelnummer;
-                let vornameAus: string = "test" + students[i].vorname;
-                let nameAus: string = "test " + students[i].name;
-                let alterAus: string = "Alter: " + students[i].alter;
-
+                let matrikelAus: string = " Matrikelnummer:" + students[i].matrikelnummer;
+                let vornameAus: string = " Vorname" + students[i].vorname;
+                let nameAus: string = " Name " + students[i].name;
+                let alterAus: string = " Alter: " + students[i].alter;
+                let kommentarAus: string = " Kommentar: " + students[i].kommentar;
                 let geschlechtAus: string;
 
 
@@ -90,7 +90,7 @@ namespace StudiVZ {
 
 
 
-                let kommentarAus: string = students[i].kommentar;
+
                 return matrikelAus + vornameAus + nameAus + alterAus + geschlechtAus + kommentarAus;
             }
         }

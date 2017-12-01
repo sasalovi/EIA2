@@ -58,16 +58,16 @@ var StudiVZ;
     function queryData(_matrikel) {
         for (var i = 0; i < students.length; i++) {
             if (students[i].matrikelnummer == _matrikel) {
-                let matrikelAus = "Matrikelnummer:" + students[i].matrikelnummer;
-                let vornameAus = "test" + students[i].vorname;
-                let nameAus = "test " + students[i].name;
-                let alterAus = "Alter: " + students[i].alter;
+                let matrikelAus = " Matrikelnummer:" + students[i].matrikelnummer;
+                let vornameAus = " Vorname" + students[i].vorname;
+                let nameAus = " Name " + students[i].name;
+                let alterAus = " Alter: " + students[i].alter;
+                let kommentarAus = " Kommentar: " + students[i].kommentar;
                 let geschlechtAus;
                 if (students[i].geschlecht)
                     geschlechtAus = " m�nnlich";
                 else
                     geschlechtAus = " weiblich";
-                let kommentarAus = students[i].kommentar;
                 return matrikelAus + vornameAus + nameAus + alterAus + geschlechtAus + kommentarAus;
             }
         }
