@@ -21,9 +21,8 @@ var StudiVZ;
         }
     }
     function saveData(_input) {
-        //Student Objekt vom Typ StudentData erstellen
-        let stringToSplit = _input.split(",", 6); //string wird in 6 Teile gesplitted
-        if (parseInt(stringToSplit[0]) == NaN) {
+        let stringToSplit = _input.split(",", 6); //.split --> string wird in 6 Teile gesplitted, ausgehend von der kommasetzung
+        if (Number.isNaN(parseInt(stringToSplit[0]))) {
             return "'Matrikelnummer' muss eine Zahl sein";
         }
         else if (stringToSplit[1] == "") {
@@ -50,7 +49,7 @@ var StudiVZ;
                 geschlecht: parseInt(stringToSplit[4]) == 1,
                 kommentar: stringToSplit[5]
             };
-            students.push(student);
+            students.push(student); //student in das students array pushen
             console.log(students);
             return "Erfolgreich gespeichert";
         }

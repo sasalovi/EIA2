@@ -13,7 +13,7 @@ namespace StudiVZ {
     while (!stop) {
         var action: string = prompt("Datensatz anlegen (n), abfragen(a) oder Programm beenden (s)\nn,a oder s eingeben");
 
-        switch (action) {
+        switch (action) { //wenn Buchstabe xy gedrückt wird, führe aktion xy aus
             case "n":
             case "N":
                 var input: string = prompt("Eingabe (jeweils mit Komma getrennt) von\nMatrikelnummer, Name, Vorname, Alter, Geschlecht (0 oder 1) und Kommentar");
@@ -32,12 +32,11 @@ namespace StudiVZ {
 
 
     function saveData(_input: string): string {
-        //Student Objekt vom Typ StudentData erstellen
-        let stringToSplit: string[] = _input.split(",", 6);   //string wird in 6 Teile gesplitted
+
+        let stringToSplit: string[] = _input.split(",", 6);   //.split --> string wird in 6 Teile gesplitted, ausgehend von der kommasetzung
 
 
-
-        if (parseInt(stringToSplit[0]) == NaN) {
+        if (Number.isNaN(parseInt(stringToSplit[0]))) {
             return "'Matrikelnummer' muss eine Zahl sein";
         }
         else if (stringToSplit[1] == "") {
@@ -57,14 +56,14 @@ namespace StudiVZ {
         }
         else {
             let student: StudentData = {
-                matrikelnummer: parseInt(stringToSplit[0]),          //parseInt wandelt string in number um
+                matrikelnummer: parseInt(stringToSplit[0]),          //parseInt wandelt string in number um <-- nicht 100% korrekt
                 name: stringToSplit[1],
                 vorname: stringToSplit[2],
                 alter: parseInt(stringToSplit[3]),
                 geschlecht: parseInt(stringToSplit[4]) == 1, //0 ==1 --> false 1 == 1--> true;;; boolean wert
                 kommentar: stringToSplit[5]
             };
-            students.push(student);
+            students.push(student); //student in das students array pushen
             console.log(students);
             return "Erfolgreich gespeichert";
         }
@@ -80,7 +79,7 @@ namespace StudiVZ {
                 let geschlechtAus: string;
 
 
-                if (students[i].geschlecht)
+                if (students[i].geschlecht) //If prüft hier automatisch auf den boolean wert true, klammern nicht nötig da if immer die nachfolgende Zeile heranzieht
                     geschlechtAus = " männlich";
                 else
                     geschlechtAus = " weiblich";
