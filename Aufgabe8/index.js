@@ -6,7 +6,7 @@ var Aufgabe8;
     //        console.log(_event.keyCode);
     //    }
     function init() {
-        var anzahl = prompt("Eingabe der gew�nschten Anzahl");
+        var anzahl = prompt("Eingabe der gewünschten Anzahl");
         var anzahlNumb = parseInt(anzahl); //String in Number umwandeln
         if (anzahlNumb >= 10 && anzahlNumb <= 100) {
             for (var i = 0; i < anzahlNumb; i++) {
