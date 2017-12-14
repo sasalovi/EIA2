@@ -11,18 +11,18 @@ namespace StudiVZ {
     var stop: boolean = false;
 
     while (!stop) {
-        var action: string = prompt("Datensatz anlegen (n), abfragen(a) oder Programm beenden (s)\nn,a oder s eingeben");
+        var action: string = prompt("Datensatz anlegen (n), abfragen(a) oder Programm beenden (s)\nn,a oder s eingeben"); //PopUp mit Eingabemöglichkeit, nimmt Strings entgegen
 
-        switch (action) { //wenn Buchstabe xy gedr�ckt wird, f�hre aktion xy aus
-            case "n":
+        switch (action) { //wenn Buchstabe xy gedrückt wird, führe aktion xy aus
+            case "n": //in case n has been tipped, execute ...
             case "N":
                 var input: string = prompt("Eingabe (jeweils mit Komma getrennt) von\nMatrikelnummer, Name, Vorname, Alter, Geschlecht (0 oder 1) und Kommentar");
-                alert(saveData(input));
-                break;
+                alert(saveData(input)); //saveData wird aufgerufen und die Eingegeben Werte übertragen und dem Nutzer eine Bestätigung als alert angezeigt (der return wert)
+                break; //springt an dieser Stelle raus
             case "a":
             case "A":
-                var matrikel: number = parseInt(prompt("Eingabe Matrikelnummer"));
-                alert(queryData(matrikel));
+                var matrikel: number = parseInt(prompt("Eingabe Matrikelnummer")); //umwandlung in Number
+                alert(queryData(matrikel)); //aufruf queryData, übergabe Matrikelnummer
                 break;
             case "s":
             case "S":
@@ -36,7 +36,7 @@ namespace StudiVZ {
         let stringToSplit: string[] = _input.split(",", 6);   //.split --> string wird in 6 Teile gesplitted, ausgehend von der kommasetzung
 
 
-        if (Number.isNaN(parseInt(stringToSplit[0]))) {
+        if (Number.isNaN(parseInt(stringToSplit[0]))) { //prüfen ob matrikelnummer zahl ist (isNotANumber)
             return "'Matrikelnummer' muss eine Zahl sein";
         }
         else if (stringToSplit[1] == "") {
@@ -48,15 +48,15 @@ namespace StudiVZ {
         else if (parseInt(stringToSplit[3]) == NaN) {
             return "'Alter' muss eine Zahl sein";
         }
-        else if (parseInt(stringToSplit[4]) != 1 && parseInt(stringToSplit[4]) != 0) {
-            return "'Geschlecht' bitte mit 0 oder 1 eingeben";
+        else if (parseInt(stringToSplit[4]) != 1 && parseInt(stringToSplit[4]) != 0) { //0 false, 1 true --> boolean
+            return "'Geschlecht' bitte mit 0=w oder 1=m eingeben";
         }
         else if (stringToSplit[5] == "") {
-            return "'Kommentar' als W�rter eingeben";
+            return "'Kommentar' als Wörter eingeben";
         }
         else {
-            let student: StudentData = {
-                matrikelnummer: parseInt(stringToSplit[0]),          //parseInt wandelt string in number um <-- nicht 100% korrekt
+            let student: StudentData = { //Werte in die Variablen des Interface speichern
+                matrikelnummer: parseInt(stringToSplit[0]),          //parseInt wandelt string in number um
                 name: stringToSplit[1],
                 vorname: stringToSplit[2],
                 alter: parseInt(stringToSplit[3]),
@@ -70,8 +70,8 @@ namespace StudiVZ {
     }
     function queryData(_matrikel: number): string {
         for (var i: number = 0; i < students.length; i++) {
-            if (students[i].matrikelnummer == _matrikel) {
-                let matrikelAus: string = " Matrikelnummer:" + students[i].matrikelnummer;
+            if (students[i].matrikelnummer == _matrikel) { //Einzelne gespeicherte Daten auf Matrikelnummer prüfen
+                let matrikelAus: string = " Matrikelnummer:" + students[i].matrikelnummer; //Ausgabe der zugehörigen Daten
                 let vornameAus: string = " Vorname" + students[i].vorname;
                 let nameAus: string = " Name " + students[i].name;
                 let alterAus: string = " Alter: " + students[i].alter;
@@ -79,8 +79,8 @@ namespace StudiVZ {
                 let geschlechtAus: string;
 
 
-                if (students[i].geschlecht) //If pr�ft hier automatisch auf den boolean wert true, klammern nicht n�tig da if immer die nachfolgende Zeile heranzieht
-                    geschlechtAus = " m�nnlich";
+                if (students[i].geschlecht) //If prüft hier automatisch auf den boolean wert true, klammern nicht nötig da if immer die nachfolgende Zeile heranzieht
+                    geschlechtAus = " männlich";
                 else
                     geschlechtAus = " weiblich";
 
@@ -90,7 +90,7 @@ namespace StudiVZ {
 
 
 
-                return matrikelAus + vornameAus + nameAus + alterAus + geschlechtAus + kommentarAus;
+                return matrikelAus + vornameAus + nameAus + alterAus + geschlechtAus + kommentarAus; //Ausgabe auf der Console
             }
         }
 
