@@ -1,0 +1,13 @@
+h1 {
+	color: green;
+}
+
+legend {
+	font-size: 1.2em;
+}
+
+fieldset {
+	color: green;
+	width: 50%;
+	margin-top: 0.2em;
+}
