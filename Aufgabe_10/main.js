@@ -8,28 +8,29 @@ var Aufgabe10;
     window.addEventListener("load", init);
     //AuswahlBoxen
     let baumtyp = document.createElement("select");
-    let halterungtyp = document.createElement("select");
+    let halterungtyp = document.createElement("select"); //Selekt Boxen erstellen
     let lieferopttyp = document.createElement("select");
-    var korb = document.createElement("div");
+    var korb = document.createElement("div"); //Warenkorb Div erstellen
     //Persönlich
     let persName = document.createElement("input");
     let persVorname = document.createElement("input");
-    let persMail = document.createElement("input");
+    let persMail = document.createElement("input"); //Texteingabefelder erstellen
     let persAdresse = document.createElement("input");
     let persPlz = document.createElement("input");
     //Button
     let prufen = document.createElement("div");
-    var gesamtpreis = 0;
+    //All die erstellen Elemente werden später im Code mit Eigenschaften ausgestattet und ans DOM gehängt
+    var gesamtpreis = 0; //Festlegen einer Gesamtpreis Variable, damit diese überall im Dokument aufrufbar ist
     function init() {
         //Warenkorb Definieren und Anhängen
-        let h2 = document.createElement("h2");
-        h2.innerText = "Warenkorb";
-        h2.style.position = "absolute";
+        let h2 = document.createElement("h2"); //Warenkorb überschrift
+        h2.innerText = "Warenkorb"; //Text der überschrift
+        h2.style.position = "absolute"; //CSS Gestaltung
         h2.style.right = "390px";
         h2.style.top = "0px";
         h2.style.zIndex = "99";
-        document.getElementById("korbid").appendChild(h2);
-        korb.style.display = "inline-block";
+        document.getElementById("korbid").appendChild(h2); //Überschrift an div mit id korbid ins DOM hinzufügen
+        korb.style.display = "inline-block"; //Warenkorb Stylen
         korb.style.position = "absolute";
         korb.style.right = "10px";
         korb.style.top = "10px";
@@ -38,14 +39,14 @@ var Aufgabe10;
         korb.style.backgroundColor = "#c8ce86";
         korb.style.paddingTop = "40px";
         korb.style.paddingLeft = "10px";
-        document.getElementById("korbid").appendChild(korb);
+        document.getElementById("korbid").appendChild(korb); //Warenkorb (korb) an DOM anhängen
         //Baum Definieren und Anhängen        
-        baumtyp.addEventListener("change", AuswahlAuslesen);
+        baumtyp.addEventListener("change", AuswahlAuslesen); //oben erstellten baumtyp vararbeiten
         document.getElementById("baumtyp").appendChild(baumtyp);
         for (let i = 0; i < Aufgabe10.baumdaten.length; i++) {
             let option = document.createElement("option");
             option.innerText = Aufgabe10.baumdaten[i].name;
-            baumtyp.id = Aufgabe10.baumdaten[i].element; //Typ bzw ID Des Elements zuweisen, siehe Daten.ts
+            baumtyp.id = Aufgabe10.baumdaten[i].element; //Typ bzw ID Des Elements zuweisen, siehe Daten.ts; Wird später im Warenkorb gebraucht um zu prüfen ob Objekt schon vorhanden ist
             baumtyp.appendChild(option);
         }
         //Halterungen Selektor          
@@ -60,10 +61,10 @@ var Aufgabe10;
         //Kugel Selektor       
         for (let i = 0; i < Aufgabe10.kugeldaten.length; i++) {
             let kugeltyp = document.createElement("input");
-            kugeltyp.type = "checkbox";
+            kugeltyp.type = "checkbox"; //Macht es zur Checkbox
             kugeltyp.id = Aufgabe10.kugeldaten[i].element;
             kugeltyp.addEventListener("change", function () {
-                ChkKugelnAuslesen(kugeltyp, "1");
+                ChkKugelnAuslesen(kugeltyp, "1"); //Werte übergeben; in kugeltyp ist alles enthalten
             });
             document.getElementById("kugeln").appendChild(kugeltyp);
             //Labels hinzufügen
@@ -72,7 +73,7 @@ var Aufgabe10;
             document.getElementById("kugeln").appendChild(kugellabel);
             //Anzahl Selektor
             let kugelanz = document.createElement("input");
-            kugelanz.type = "number";
+            kugelanz.type = "number"; //Macht es zum NummerHochZählFeld
             kugelanz.step = "1";
             kugelanz.min = "0";
             kugelanz.value = "1";
@@ -184,7 +185,7 @@ var Aufgabe10;
             ZuWarenkorb(Aufgabe10.lieferoptionen, true, lieferant);
         }
     }
-    //Wird von DropDown genutzt
+    //Wird von DropDown genutzt; Sucht nach dem Preis
     function ZuWarenkorb(daten, ischeckt, elementname) {
         for (let i = 0; i < daten.length; i++) {
             if (daten[i].name == elementname) {
@@ -193,7 +194,7 @@ var Aufgabe10;
         }
     }
     function Warenkorb(elementId, value, preis, anzahl, selected) {
-        var preisElement;
+        var preisElement; //Preis von anzahl mal Element berechnen
         preisElement = anzahl * preis;
         //Wird erst bei zweitem Durchgang ausgef�hrt, zu Beginn keine Elemente in Korb vorhanden
         for (let i = 0; i < korb.getElementsByTagName("p").length; i++) {
@@ -211,10 +212,10 @@ var Aufgabe10;
             var p = document.createElement("p");
             p.id = elementId;
             p.innerText = value + "  = " + preisElement + "€";
+            gesamtpreis = gesamtpreis + preisElement; //Gesamtpreis erhöhen
             korb.appendChild(p);
         }
         //Gesamtpreis wieder hinzufügen
-        gesamtpreis = gesamtpreis + preisElement;
         var pGesamt = document.createElement("p");
         pGesamt.id = "gesamtpreisid";
         pGesamt.innerText = "Gesamtpreis =  " + gesamtpreis + "€";

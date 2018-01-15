@@ -7,7 +7,7 @@ export interface Daten {
 }
     
 
-export let baumdaten: Daten[] = [
+export let baumdaten: Daten[] = [ //multidimensionales heterogenes Array
     {element: "baum", name: "", preis: 0},
     {element: "baum", name: "Fichte", preis: 19},
     {element: "baum", name: "Nordmanntanne", preis: 30}

@@ -9,34 +9,36 @@ namespace Aufgabe10 {
     
     //AuswahlBoxen
     let baumtyp: HTMLSelectElement = document.createElement("select");
-    let halterungtyp: HTMLSelectElement = document.createElement("select");
+    let halterungtyp: HTMLSelectElement = document.createElement("select"); //Selekt Boxen erstellen
     let lieferopttyp: HTMLSelectElement = document.createElement("select");
-    var korb: HTMLDivElement = document.createElement("div");
+    var korb: HTMLDivElement = document.createElement("div"); //Warenkorb Div erstellen
 
     //Persönlich
     let persName: HTMLInputElement = document.createElement("input");
     let persVorname: HTMLInputElement = document.createElement("input");
-    let persMail: HTMLInputElement = document.createElement("input");
+    let persMail: HTMLInputElement = document.createElement("input"); //Texteingabefelder erstellen
     let persAdresse: HTMLInputElement = document.createElement("input");
     let persPlz: HTMLInputElement = document.createElement("input");
 
     //Button
-    let prufen: HTMLDivElement = document.createElement("div");
+    let prufen: HTMLDivElement = document.createElement("div"); 
 
-    var gesamtpreis: number = 0;
+    //All die erstellen Elemente werden später im Code mit Eigenschaften ausgestattet und ans DOM gehängt
+    
+    var gesamtpreis: number = 0; //Festlegen einer Gesamtpreis Variable, damit diese überall im Dokument aufrufbar ist
 
 
     function init(): void {
         
         //Warenkorb Definieren und Anhängen
-        let h2: HTMLHeadingElement = document.createElement("h2");
-        h2.innerText = "Warenkorb";
-        h2.style.position = "absolute";
+        let h2: HTMLHeadingElement = document.createElement("h2"); //Warenkorb überschrift
+        h2.innerText = "Warenkorb"; //Text der überschrift
+        h2.style.position = "absolute"; //CSS Gestaltung
         h2.style.right = "390px";
         h2.style.top = "0px";
         h2.style.zIndex = "99";
-        document.getElementById("korbid").appendChild(h2);
-        korb.style.display = "inline-block";
+        document.getElementById("korbid").appendChild(h2); //Überschrift an div mit id korbid ins DOM hinzufügen
+        korb.style.display = "inline-block"; //Warenkorb Stylen
         korb.style.position = "absolute";
         korb.style.right = "10px";
         korb.style.top = "10px";
@@ -45,16 +47,16 @@ namespace Aufgabe10 {
         korb.style.backgroundColor = "#c8ce86";
         korb.style.paddingTop = "40px";
         korb.style.paddingLeft = "10px";
-        document.getElementById("korbid").appendChild(korb);
+        document.getElementById("korbid").appendChild(korb); //Warenkorb (korb) an DOM anhängen
 
         //Baum Definieren und Anhängen        
-        baumtyp.addEventListener("change", AuswahlAuslesen);
+        baumtyp.addEventListener("change", AuswahlAuslesen); //oben erstellten baumtyp vararbeiten
         document.getElementById("baumtyp").appendChild(baumtyp);
 
         for (let i: number = 0; i < baumdaten.length; i++) {
             let option: HTMLOptionElement = document.createElement("option");
-            option.innerText = baumdaten[i].name;
-            baumtyp.id = baumdaten[i].element; //Typ bzw ID Des Elements zuweisen, siehe Daten.ts
+            option.innerText = baumdaten[i].name; 
+            baumtyp.id = baumdaten[i].element; //Typ bzw ID Des Elements zuweisen, siehe Daten.ts; Wird später im Warenkorb gebraucht um zu prüfen ob Objekt schon vorhanden ist
             baumtyp.appendChild(option);
         }
 
@@ -75,10 +77,10 @@ namespace Aufgabe10 {
         //Kugel Selektor       
         for (let i: number = 0; i < kugeldaten.length; i++) {
             let kugeltyp: HTMLInputElement = document.createElement("input");
-            kugeltyp.type = "checkbox";
-            kugeltyp.id = kugeldaten[i].element;
+            kugeltyp.type = "checkbox"; //Macht es zur Checkbox
+            kugeltyp.id = kugeldaten[i].element; 
             kugeltyp.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
-                ChkKugelnAuslesen(kugeltyp, "1");
+                ChkKugelnAuslesen(kugeltyp, "1"); //Werte übergeben; in kugeltyp ist alles enthalten
             });
                            
             document.getElementById("kugeln").appendChild(kugeltyp);
@@ -90,7 +92,7 @@ namespace Aufgabe10 {
 
             //Anzahl Selektor
             let kugelanz: HTMLInputElement = document.createElement("input");
-            kugelanz.type = "number";
+            kugelanz.type = "number"; //Macht es zum NummerHochZählFeld
             kugelanz.step = "1";
             kugelanz.min = "0";
             kugelanz.value = "1";
@@ -236,7 +238,7 @@ namespace Aufgabe10 {
         }
     }
 
-    //Wird von DropDown genutzt
+    //Wird von DropDown genutzt; Sucht nach dem Preis
     function ZuWarenkorb(daten: Daten[], ischeckt: boolean, elementname: string): void { 
 
         for (let i: number = 0; i < daten.length; i++) {
@@ -249,7 +251,7 @@ namespace Aufgabe10 {
 
     function Warenkorb(elementId: string, value: string, preis: number, anzahl: number, selected: boolean): void {
 
-        var preisElement: number;
+        var preisElement: number; //Preis von anzahl mal Element berechnen
         preisElement = anzahl * preis;
 
         //Wird erst bei zweitem Durchgang ausgef�hrt, zu Beginn keine Elemente in Korb vorhanden
@@ -271,11 +273,11 @@ namespace Aufgabe10 {
             var p: HTMLParagraphElement = document.createElement("p");
             p.id = elementId;
             p.innerText = value + "  = " + preisElement + "€";
+            gesamtpreis = gesamtpreis + preisElement; //Gesamtpreis erhöhen
             korb.appendChild(p);
         }
 
         //Gesamtpreis wieder hinzufügen
-        gesamtpreis = gesamtpreis + preisElement;
         var pGesamt: HTMLParagraphElement = document.createElement("p");
         pGesamt.id = "gesamtpreisid";
         pGesamt.innerText = "Gesamtpreis =  " + gesamtpreis + "€";
