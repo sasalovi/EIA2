@@ -11,7 +11,7 @@ var Aufgabe11;
     let halterungtyp = document.createElement("select");
     let lieferopttyp = document.createElement("select");
     var korb = document.createElement("div");
-    //Pers�hnlich
+    //Persöhnlich
     let persName = document.createElement("input");
     let persVorname = document.createElement("input");
     let persMail = document.createElement("input");
@@ -20,8 +20,12 @@ var Aufgabe11;
     //Button
     let prufen = document.createElement("div");
     var gesamtpreis = 0;
+    var gesamtpreisVar = document.createElement("input");
+    // gesamtpreisVar.name = "Gesamtpreis " + gesamtpreis;
+    // korb.appendChild(gesamtpreisVar);
+    gesamtpreisVar.style.display = "none";
     function init() {
-        //Warenkorb Definieren und Anhängen
+        //Warenkorb Definieren und AnhÃ¤ngen
         let h2 = document.createElement("h2");
         h2.innerText = "Warenkorb";
         h2.style.position = "absolute";
@@ -39,10 +43,10 @@ var Aufgabe11;
         korb.style.paddingTop = "40px";
         korb.style.paddingLeft = "10px";
         document.getElementById("korbid").appendChild(korb);
-        //Baum Definieren und Anhängen        
+        //Baum Definieren und AnhÃ¤ngen        
         baumtyp.addEventListener("change", AuswahlAuslesen);
         document.getElementById("baumtyp").appendChild(baumtyp);
-        baumtyp.name = "baumtyp";
+        baumtyp.name = "Baumtyp";
         for (let i = 0; i < Aufgabe11.baumdaten.length; i++) {
             let option = document.createElement("option");
             option.innerText = Aufgabe11.baumdaten[i].name;
@@ -52,7 +56,7 @@ var Aufgabe11;
         //Halterungen Selektor          
         halterungtyp.addEventListener("change", AuswahlAuslesen);
         document.getElementById("halterung").appendChild(halterungtyp);
-        halterungtyp.name = "halterungtyp";
+        halterungtyp.name = "Halterungtyp";
         for (let i = 0; i < Aufgabe11.halterungdaten.length; i++) {
             let option = document.createElement("option");
             option.innerText = Aufgabe11.halterungdaten[i].name;
@@ -64,12 +68,12 @@ var Aufgabe11;
             let kugeltyp = document.createElement("input");
             kugeltyp.type = "checkbox";
             kugeltyp.id = Aufgabe11.kugeldaten[i].element;
-            kugeltyp.name = "kugeltyp";
+            kugeltyp.name = "Kugeltyp";
             kugeltyp.addEventListener("change", function () {
                 ChkKugelnAuslesen(kugeltyp, "1");
             });
             document.getElementById("kugeln").appendChild(kugeltyp);
-            //Labels hinzufügen
+            //Labels hinzufÃ¼gen
             let kugellabel = document.createElement("label");
             kugellabel.innerText = Aufgabe11.kugeldaten[i].name;
             document.getElementById("kugeln").appendChild(kugellabel);
@@ -81,7 +85,7 @@ var Aufgabe11;
             kugelanz.value = "1";
             kugelanz.style.marginRight = "1.5em";
             kugelanz.addEventListener("change", function () {
-                kugeltyp.checked = true; //Chekbox Anhaken wenn wert ge�ndert wird
+                kugeltyp.checked = true; //Chekbox Anhaken wenn wert geï¿½ndert wird
                 ChkKugelnAuslesen(kugeltyp, kugelanz.value);
             });
             document.getElementById("kugeln").appendChild(kugelanz);
@@ -96,7 +100,7 @@ var Aufgabe11;
                 ChkKerzenAuslesen(kerzetyp, "1");
             });
             document.getElementById("kerzen").appendChild(kerzetyp);
-            //Label Hinzufügen
+            //Label HinzufÃ¼gen
             let kerzelabel = document.createElement("label");
             kerzelabel.innerText = Aufgabe11.kerzendaten[i].name;
             document.getElementById("kerzen").appendChild(kerzelabel);
@@ -108,7 +112,7 @@ var Aufgabe11;
             kerzenanz.value = "1";
             kerzenanz.style.marginRight = "1.5em";
             kerzenanz.addEventListener("change", function () {
-                kerzetyp.checked = true; //Chekbox Anhaken wenn wert ge�ndert wird
+                kerzetyp.checked = true; //Chekbox Anhaken wenn wert geï¿½ndert wird
                 ChkKerzenAuslesen(kerzetyp, kerzenanz.value);
             });
             document.getElementById("kerzen").appendChild(kerzenanz);
@@ -116,14 +120,14 @@ var Aufgabe11;
         //Lieferoption Selektor       
         lieferopttyp.addEventListener("change", AuswahlAuslesen);
         document.getElementById("lieferoption").appendChild(lieferopttyp);
-        lieferopttyp.name = "lieferoption";
+        lieferopttyp.name = "Lieferoption";
         for (let i = 0; i < Aufgabe11.lieferoptionen.length; i++) {
             let option = document.createElement("option");
             option.innerText = Aufgabe11.lieferoptionen[i].name;
             lieferopttyp.id = Aufgabe11.lieferoptionen[i].element;
             lieferopttyp.appendChild(option);
         }
-        //Persönliche Daten Eingeben
+        //PersÃ¶nliche Daten Eingeben
         persName.type = "text";
         persName.name = "Name";
         persName.placeholder = "Name";
@@ -176,12 +180,12 @@ var Aufgabe11;
         }
     }
     function AuswahlAuslesen() {
-        var baumname = baumtyp.value; //baumtyp.value == ausgewählter Wert im DropDown
+        var baumname = baumtyp.value; //baumtyp.value == ausgewÃ¤hlter Wert im DropDown
         if (baumname != "") {
-            ZuWarenkorb(Aufgabe11.baumdaten, true, baumname); //true --> element ist ausgewählt
+            ZuWarenkorb(Aufgabe11.baumdaten, true, baumname); //true --> element ist ausgewÃ¤hlt
         }
         else {
-            ZuWarenkorb(Aufgabe11.baumdaten, false, baumname); //false --> Element wurde abgewählt
+            ZuWarenkorb(Aufgabe11.baumdaten, false, baumname); //false --> Element wurde abgewÃ¤hlt
         }
         var halterungname = halterungtyp.value;
         if (halterungname != "") {
@@ -199,21 +203,21 @@ var Aufgabe11;
     function ZuWarenkorb(daten, ischeckt, elementname) {
         for (let i = 0; i < daten.length; i++) {
             if (daten[i].name == elementname) {
-                Warenkorb(daten[i].element, elementname, daten[i].preis, 1, ischeckt); //1 --> da nur ein Element ausgewählt werden kann
+                Warenkorb(daten[i].element, elementname, daten[i].preis, 1, ischeckt); //1 --> da nur ein Element ausgewÃ¤hlt werden kann
             }
         }
     }
     function Warenkorb(elementId, value, preis, anzahl, selected) {
         var preisElement;
         preisElement = anzahl * preis;
-        //Wird erst bei zweitem Durchgang ausgef�hrt, zu Beginn keine Elemente in Korb vorhanden
+        //Wird erst bei zweitem Durchgang ausgefï¿½hrt, zu Beginn keine Elemente in Korb vorhanden
         for (let i = 0; i < korb.getElementsByTagName("p").length; i++) {
             if (korb.getElementsByTagName("p")[i].id == elementId) {
                 var innerPreis = korb.getElementsByTagName("p")[i].innerText.split("=")[1]; //Preis extrahieren
-                korb.getElementsByTagName("p")[i].remove(); //Wenn vorhanden Element löschen
+                korb.getElementsByTagName("p")[i].remove(); //Wenn vorhanden Element lÃ¶schen
                 gesamtpreis = gesamtpreis - parseInt(innerPreis); //Gesamtpreis bereinigen
             }
-            //Gesamtpreis p entfernen um später aktualisiert zurück einzufügen
+            //Gesamtpreis p entfernen um spÃ¤ter aktualisiert zurÃ¼ck einzufÃ¼gen
             if (korb.getElementsByTagName("p")[i].id == "gesamtpreisid") {
                 korb.getElementsByTagName("p")[i].remove();
             }
@@ -224,7 +228,7 @@ var Aufgabe11;
             p.innerText = value + "  = " + preisElement + "€";
             korb.appendChild(p);
         }
-        //Gesamtpreis wieder hinzufügen
+        //Gesamtpreis wieder hinzufÃ¼gen
         gesamtpreis = gesamtpreis + preisElement;
         var pGesamt = document.createElement("p");
         pGesamt.id = "gesamtpreisid";
@@ -234,6 +238,8 @@ var Aufgabe11;
         pGesamt.style.paddingTop = "10px";
         pGesamt.style.borderTop = "2px solid grey";
         korb.appendChild(pGesamt);
+        gesamtpreisVar.name = "Gesamtpreis " + gesamtpreis;
+        korb.appendChild(gesamtpreisVar);
     }
     function PrufeDaten() {
         prufen.innerText = "";

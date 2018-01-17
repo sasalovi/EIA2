@@ -3,7 +3,6 @@
 //     Datum:07.01.17
 //     Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. 
 //     Er wurde nicht kopiert und nicht diktiert.-->
-
 namespace Aufgabe11 {
     window.addEventListener("load", init);
     
@@ -13,7 +12,7 @@ namespace Aufgabe11 {
     let lieferopttyp: HTMLSelectElement = document.createElement("select");
     var korb: HTMLDivElement = document.createElement("div");
 
-    //Pers�hnlich
+    //Persöhnlich
     let persName: HTMLInputElement = document.createElement("input");
     let persVorname: HTMLInputElement = document.createElement("input");
     let persMail: HTMLInputElement = document.createElement("input");
@@ -24,11 +23,16 @@ namespace Aufgabe11 {
     let prufen: HTMLDivElement = document.createElement("div");
 
     var gesamtpreis: number = 0;
-
-
+    var gesamtpreisVar: HTMLInputElement = document.createElement("input");
+       // gesamtpreisVar.name = "Gesamtpreis " + gesamtpreis;
+        
+   // korb.appendChild(gesamtpreisVar);
+    gesamtpreisVar.style.display = "none";
+    
+    
     function init(): void {
         
-        //Warenkorb Definieren und Anhängen
+        //Warenkorb Definieren und AnhÃ¤ngen
         let h2: HTMLHeadingElement = document.createElement("h2");
         h2.innerText = "Warenkorb";
         h2.style.position = "absolute";
@@ -47,10 +51,10 @@ namespace Aufgabe11 {
         korb.style.paddingLeft = "10px";
         document.getElementById("korbid").appendChild(korb);
 
-        //Baum Definieren und Anhängen        
+        //Baum Definieren und AnhÃ¤ngen        
         baumtyp.addEventListener("change", AuswahlAuslesen);
         document.getElementById("baumtyp").appendChild(baumtyp);
-        baumtyp.name = "baumtyp";
+        baumtyp.name = "Baumtyp";
 
         for (let i: number = 0; i < baumdaten.length; i++) {
             let option: HTMLOptionElement = document.createElement("option");
@@ -64,7 +68,7 @@ namespace Aufgabe11 {
         //Halterungen Selektor          
         halterungtyp.addEventListener("change", AuswahlAuslesen);
         document.getElementById("halterung").appendChild(halterungtyp);
-        halterungtyp.name = "halterungtyp";
+        halterungtyp.name = "Halterungtyp";
         
 
         for (let i: number = 0; i < halterungdaten.length; i++) {
@@ -80,16 +84,17 @@ namespace Aufgabe11 {
             let kugeltyp: HTMLInputElement = document.createElement("input");
             kugeltyp.type = "checkbox";
             kugeltyp.id = kugeldaten[i].element;
-            kugeltyp.name = "kugeltyp";
-            kugeltyp.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
+            kugeltyp.name = "Kugeltyp";
+            kugeltyp.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu ï¿½bergeben
                 ChkKugelnAuslesen(kugeltyp, "1");
             });
                            
             document.getElementById("kugeln").appendChild(kugeltyp);
 
-            //Labels hinzufügen
+            //Labels hinzufÃ¼gen
             let kugellabel: HTMLLabelElement = document.createElement("label");
             kugellabel.innerText = kugeldaten[i].name;
+            
             document.getElementById("kugeln").appendChild(kugellabel);
 
             //Anzahl Selektor
@@ -99,8 +104,8 @@ namespace Aufgabe11 {
             kugelanz.min = "0";
             kugelanz.value = "1";
             kugelanz.style.marginRight = "1.5em";
-            kugelanz.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
-                kugeltyp.checked = true; //Chekbox Anhaken wenn wert ge�ndert wird
+            kugelanz.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu ï¿½bergeben
+                kugeltyp.checked = true; //Chekbox Anhaken wenn wert geï¿½ndert wird
                 ChkKugelnAuslesen(kugeltyp, kugelanz.value);
             });
             document.getElementById("kugeln").appendChild(kugelanz);
@@ -113,14 +118,14 @@ namespace Aufgabe11 {
             let kerzetyp: HTMLInputElement = document.createElement("input");
             kerzetyp.type = "checkbox";
             kerzetyp.id = kerzendaten[i].element;
-                    kerzetyp.name = "kerzetyp";
-            kerzetyp.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
+            kerzetyp.name = "kerzetyp";
+            kerzetyp.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu ï¿½bergeben
                 ChkKerzenAuslesen(kerzetyp, "1");
             });
                    
             document.getElementById("kerzen").appendChild(kerzetyp);
 
-            //Label Hinzufügen
+            //Label HinzufÃ¼gen
             let kerzelabel: HTMLLabelElement = document.createElement("label");
             kerzelabel.innerText = kerzendaten[i].name;
             document.getElementById("kerzen").appendChild(kerzelabel);
@@ -132,8 +137,8 @@ namespace Aufgabe11 {
             kerzenanz.min = "0";
             kerzenanz.value = "1";
             kerzenanz.style.marginRight = "1.5em";
-            kerzenanz.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
-                kerzetyp.checked = true; //Chekbox Anhaken wenn wert ge�ndert wird
+            kerzenanz.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu ï¿½bergeben
+                kerzetyp.checked = true; //Chekbox Anhaken wenn wert geï¿½ndert wird
                 ChkKerzenAuslesen(kerzetyp, kerzenanz.value);
             });
             document.getElementById("kerzen").appendChild(kerzenanz);
@@ -144,7 +149,7 @@ namespace Aufgabe11 {
         //Lieferoption Selektor       
         lieferopttyp.addEventListener("change", AuswahlAuslesen);
         document.getElementById("lieferoption").appendChild(lieferopttyp);
-        lieferopttyp.name = "lieferoption";
+        lieferopttyp.name = "Lieferoption";
 
         for (let i: number = 0; i < lieferoptionen.length; i++) {
             let option: HTMLOptionElement = document.createElement("option");
@@ -154,9 +159,9 @@ namespace Aufgabe11 {
         }
 
 
-//Persönliche Daten Eingeben
+//PersÃ¶nliche Daten Eingeben
         persName.type = "text";
-                persName.name = "Name";
+        persName.name = "Name";
         persName.placeholder = "Name";
         persName.required = true;
         persName.style.marginRight = "1em";
@@ -207,7 +212,6 @@ namespace Aufgabe11 {
     function ChkKugelnAuslesen(chkElement: HTMLInputElement, anzahl: string): void {
         for (let i: number = 0; i < kugeldaten.length; i++) {
             if (kugeldaten[i].element == chkElement.id) {
-
                 Warenkorb(chkElement.id, kugeldaten[i].name, kugeldaten[i].preis, parseInt(anzahl), chkElement.checked);
 
             }
@@ -217,6 +221,7 @@ namespace Aufgabe11 {
     function ChkKerzenAuslesen(chkElement: HTMLInputElement, anzahl: string): void {
         for (let i: number = 0; i < kerzendaten.length; i++) {
             if (kerzendaten[i].element == chkElement.id) {
+                
                 Warenkorb(chkElement.id, kerzendaten[i].name, kerzendaten[i].preis, parseInt(anzahl), chkElement.checked);
             }
         }
@@ -224,12 +229,12 @@ namespace Aufgabe11 {
 
 
     function AuswahlAuslesen(): void {
-        var baumname: string = baumtyp.value; //baumtyp.value == ausgewählter Wert im DropDown
+        var baumname: string = baumtyp.value; //baumtyp.value == ausgewÃ¤hlter Wert im DropDown
         if (baumname != "") {
-            ZuWarenkorb(baumdaten, true, baumname); //true --> element ist ausgewählt
+            ZuWarenkorb(baumdaten, true, baumname); //true --> element ist ausgewÃ¤hlt
         }
         else {
-            ZuWarenkorb(baumdaten, false, baumname); //false --> Element wurde abgewählt
+            ZuWarenkorb(baumdaten, false, baumname); //false --> Element wurde abgewÃ¤hlt
         }
 
 
@@ -253,7 +258,7 @@ namespace Aufgabe11 {
 
         for (let i: number = 0; i < daten.length; i++) {
             if (daten[i].name == elementname) {
-                Warenkorb(daten[i].element, elementname, daten[i].preis, 1, ischeckt); //1 --> da nur ein Element ausgewählt werden kann
+                Warenkorb(daten[i].element, elementname, daten[i].preis, 1, ischeckt); //1 --> da nur ein Element ausgewÃ¤hlt werden kann
             }
         }
     }
@@ -264,16 +269,15 @@ namespace Aufgabe11 {
         var preisElement: number;
         preisElement = anzahl * preis;
 
-        //Wird erst bei zweitem Durchgang ausgef�hrt, zu Beginn keine Elemente in Korb vorhanden
-        for (let i: number = 0; i < korb.getElementsByTagName("p").length; i++) { //Warenkorb auf vorhandene p pr�fen
-            if (korb.getElementsByTagName("p")[i].id == elementId) { //Vergleicht Elemente im Warenkorb mit ausgewähltem Element
+        //Wird erst bei zweitem Durchgang ausgefï¿½hrt, zu Beginn keine Elemente in Korb vorhanden
+        for (let i: number = 0; i < korb.getElementsByTagName("p").length; i++) { //Warenkorb auf vorhandene p prï¿½fen
+            if (korb.getElementsByTagName("p")[i].id == elementId) { //Vergleicht Elemente im Warenkorb mit ausgewÃ¤hltem Element
                 var innerPreis: string = korb.getElementsByTagName("p")[i].innerText.split("=")[1]; //Preis extrahieren
-                korb.getElementsByTagName("p")[i].remove(); //Wenn vorhanden Element löschen
-
+                korb.getElementsByTagName("p")[i].remove(); //Wenn vorhanden Element lÃ¶schen
                 gesamtpreis = gesamtpreis - parseInt(innerPreis); //Gesamtpreis bereinigen
             }
             
-            //Gesamtpreis p entfernen um später aktualisiert zurück einzufügen
+            //Gesamtpreis p entfernen um spÃ¤ter aktualisiert zurÃ¼ck einzufÃ¼gen
             if (korb.getElementsByTagName("p")[i].id == "gesamtpreisid") {
                 korb.getElementsByTagName("p")[i].remove();
             }
@@ -286,7 +290,7 @@ namespace Aufgabe11 {
             korb.appendChild(p);
         }
 
-        //Gesamtpreis wieder hinzufügen
+        //Gesamtpreis wieder hinzufÃ¼gen
         gesamtpreis = gesamtpreis + preisElement;
         var pGesamt: HTMLParagraphElement = document.createElement("p");
         pGesamt.id = "gesamtpreisid";
@@ -296,6 +300,9 @@ namespace Aufgabe11 {
         pGesamt.style.paddingTop = "10px";
         pGesamt.style.borderTop = "2px solid grey";
         korb.appendChild(pGesamt);
+       
+        gesamtpreisVar.name = "Gesamtpreis " + gesamtpreis;   
+        korb.appendChild(gesamtpreisVar);
     }
 
 
