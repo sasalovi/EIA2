@@ -54,7 +54,7 @@ namespace Aufgabe11 {
         //Baum Definieren und AnhÃ¤ngen        
         baumtyp.addEventListener("change", AuswahlAuslesen);
         document.getElementById("baumtyp").appendChild(baumtyp);
-        baumtyp.name = "Baumtyp";
+//        baumtyp.name = "Baumtyp";
 
         for (let i: number = 0; i < baumdaten.length; i++) {
             let option: HTMLOptionElement = document.createElement("option");
@@ -68,7 +68,7 @@ namespace Aufgabe11 {
         //Halterungen Selektor          
         halterungtyp.addEventListener("change", AuswahlAuslesen);
         document.getElementById("halterung").appendChild(halterungtyp);
-        halterungtyp.name = "Halterungtyp";
+//        halterungtyp.name = "Halterungtyp";
         
 
         for (let i: number = 0; i < halterungdaten.length; i++) {
@@ -84,7 +84,7 @@ namespace Aufgabe11 {
             let kugeltyp: HTMLInputElement = document.createElement("input");
             kugeltyp.type = "checkbox";
             kugeltyp.id = kugeldaten[i].element;
-            kugeltyp.name = "Kugeltyp";
+            kugeltyp.name = "Kugeltyp: " + kugeldaten[i].name ;
             kugeltyp.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu ï¿½bergeben
                 ChkKugelnAuslesen(kugeltyp, "1");
             });
@@ -118,7 +118,7 @@ namespace Aufgabe11 {
             let kerzetyp: HTMLInputElement = document.createElement("input");
             kerzetyp.type = "checkbox";
             kerzetyp.id = kerzendaten[i].element;
-            kerzetyp.name = "kerzetyp";
+            kerzetyp.name = "Kerzentyp: " + kerzendaten[i].name;
             kerzetyp.addEventListener("change", function(): void { //Anonyme Funktion erforderlich um Parameter zu ï¿½bergeben
                 ChkKerzenAuslesen(kerzetyp, "1");
             });
@@ -231,6 +231,7 @@ namespace Aufgabe11 {
     function AuswahlAuslesen(): void {
         var baumname: string = baumtyp.value; //baumtyp.value == ausgewÃ¤hlter Wert im DropDown
         if (baumname != "") {
+            baumtyp.name = "Baumtyp";
             ZuWarenkorb(baumdaten, true, baumname); //true --> element ist ausgewÃ¤hlt
         }
         else {
@@ -240,6 +241,7 @@ namespace Aufgabe11 {
 
         var halterungname: string = halterungtyp.value;
         if (halterungname != "") {
+            halterungtyp.name = "Halterungtyp";
             ZuWarenkorb(halterungdaten, true, halterungname);
         } else {
             ZuWarenkorb(halterungdaten, false, halterungname);

@@ -46,7 +46,7 @@ var Aufgabe11;
         //Baum Definieren und AnhÃ¤ngen        
         baumtyp.addEventListener("change", AuswahlAuslesen);
         document.getElementById("baumtyp").appendChild(baumtyp);
-        baumtyp.name = "Baumtyp";
+        //        baumtyp.name = "Baumtyp";
         for (let i = 0; i < Aufgabe11.baumdaten.length; i++) {
             let option = document.createElement("option");
             option.innerText = Aufgabe11.baumdaten[i].name;
@@ -56,7 +56,7 @@ var Aufgabe11;
         //Halterungen Selektor          
         halterungtyp.addEventListener("change", AuswahlAuslesen);
         document.getElementById("halterung").appendChild(halterungtyp);
-        halterungtyp.name = "Halterungtyp";
+        //        halterungtyp.name = "Halterungtyp";
         for (let i = 0; i < Aufgabe11.halterungdaten.length; i++) {
             let option = document.createElement("option");
             option.innerText = Aufgabe11.halterungdaten[i].name;
@@ -68,7 +68,7 @@ var Aufgabe11;
             let kugeltyp = document.createElement("input");
             kugeltyp.type = "checkbox";
             kugeltyp.id = Aufgabe11.kugeldaten[i].element;
-            kugeltyp.name = "Kugeltyp";
+            kugeltyp.name = "Kugeltyp: " + Aufgabe11.kugeldaten[i].name;
             kugeltyp.addEventListener("change", function () {
                 ChkKugelnAuslesen(kugeltyp, "1");
             });
@@ -95,7 +95,7 @@ var Aufgabe11;
             let kerzetyp = document.createElement("input");
             kerzetyp.type = "checkbox";
             kerzetyp.id = Aufgabe11.kerzendaten[i].element;
-            kerzetyp.name = "kerzetyp";
+            kerzetyp.name = "Kerzentyp: " + Aufgabe11.kerzendaten[i].name;
             kerzetyp.addEventListener("change", function () {
                 ChkKerzenAuslesen(kerzetyp, "1");
             });
@@ -182,6 +182,7 @@ var Aufgabe11;
     function AuswahlAuslesen() {
         var baumname = baumtyp.value; //baumtyp.value == ausgewÃ¤hlter Wert im DropDown
         if (baumname != "") {
+            baumtyp.name = "Baumtyp";
             ZuWarenkorb(Aufgabe11.baumdaten, true, baumname); //true --> element ist ausgewÃ¤hlt
         }
         else {
@@ -189,6 +190,7 @@ var Aufgabe11;
         }
         var halterungname = halterungtyp.value;
         if (halterungname != "") {
+            halterungtyp.name = "Halterungtyp";
             ZuWarenkorb(Aufgabe11.halterungdaten, true, halterungname);
         }
         else {
