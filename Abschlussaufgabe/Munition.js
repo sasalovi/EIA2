@@ -3,6 +3,7 @@ var abschluss2;
     class Munition {
         constructor(_x, _y) {
             this.removeValue = true;
+            this.button = document.createElement("div");
             this.x = _x;
             this.y = _y;
         }

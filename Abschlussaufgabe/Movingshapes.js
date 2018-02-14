@@ -2,12 +2,12 @@ var abschluss2;
 (function (abschluss2) {
     class Movingshapes {
         constructor(_x, _y) {
-            this.wolkeTod = false;
+            this.RaumschiffTod = false;
             this.x = _x;
             this.y = _y;
         }
         update() {
-            if (this.wolkeTod == false) {
+            if (this.RaumschiffTod == false) {
                 this.move(); //this f�r Zugriff auf inhalte der Klasse
                 this.draw();
             }
@@ -18,11 +18,11 @@ var abschluss2;
         draw() {
             //Platzhalter
         }
-        getWolkeTod() {
-            return this.wolkeTod;
+        getRaumschiffTod() {
+            return this.RaumschiffTod;
         }
-        setWolkeTod(_wolkeTod) {
-            this.wolkeTod = _wolkeTod;
+        setRaumschiffTod(_RaumschiffTod) {
+            this.RaumschiffTod = _RaumschiffTod;
         }
         moveDiv(i) {
             let div = document.getElementsByTagName("div")[i];

@@ -9,7 +9,7 @@ var abschluss2;
             //B�ume links
             for (let i = 0; i < 620; i++) {
                 abschluss2.crc2.fillStyle = "brown";
-                abschluss2.crc2.fillRect(i, 420, 10, -90);
+                abschluss2.crc2.fillRect(i - 5, 420, 10, -90);
                 abschluss2.crc2.beginPath();
                 abschluss2.crc2.fillStyle = "green";
                 abschluss2.crc2.arc(i + 10, 360, 15, 0, 2 * Math.PI);
@@ -21,7 +21,7 @@ var abschluss2;
             //B�ume rechts
             for (let i = 660; i < 1280; i++) {
                 abschluss2.crc2.fillStyle = "brown";
-                abschluss2.crc2.fillRect(i, 420, 10, -90);
+                abschluss2.crc2.fillRect(i - 5, 420, 10, -90);
                 abschluss2.crc2.beginPath();
                 abschluss2.crc2.fillStyle = "green";
                 abschluss2.crc2.arc(i + 10, 360, 15, 0, 2 * Math.PI);
@@ -38,6 +38,9 @@ var abschluss2;
             abschluss2.crc2.lineTo(660, 420);
             abschluss2.crc2.lineTo(940, 720);
             abschluss2.crc2.fill();
+            abschluss2.crc2.strokeStyle = "darkgrey";
+            abschluss2.crc2.lineWidth = 5;
+            abschluss2.crc2.stroke();
             //Gras Links
             abschluss2.crc2.fillStyle = "green";
             abschluss2.crc2.beginPath();
@@ -45,6 +48,7 @@ var abschluss2;
             abschluss2.crc2.lineTo(0, 420);
             abschluss2.crc2.lineTo(620, 420);
             abschluss2.crc2.lineTo(340, 720);
+            abschluss2.crc2.lineWidth = 1;
             abschluss2.crc2.fill();
             //Gras Rechts
             abschluss2.crc2.fillStyle = "green";

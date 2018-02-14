@@ -2,7 +2,7 @@ namespace abschluss2 {
     export class Movingshapes {
         x: number;
         y: number;
-        wolkeTod: boolean = false;
+        RaumschiffTod: boolean = false;
 
         constructor(_x: number, _y: number) {
             this.x = _x;
@@ -10,7 +10,7 @@ namespace abschluss2 {
         }
 
         update(): void {
-            if (this.wolkeTod == false) {
+            if (this.RaumschiffTod == false) {
                 this.move(); //this für Zugriff auf inhalte der Klasse
                 this.draw();
             }
@@ -23,12 +23,12 @@ namespace abschluss2 {
         draw(): void {
             //Platzhalter
         }
-        getWolkeTod(): boolean {
-            return this.wolkeTod;
+        getRaumschiffTod(): boolean {
+            return this.RaumschiffTod;
         }
 
-        setWolkeTod(_wolkeTod: boolean): void { 
-            this.wolkeTod = _wolkeTod;
+        setRaumschiffTod(_RaumschiffTod: boolean): void { 
+            this.RaumschiffTod = _RaumschiffTod;
         }
         moveDiv(i: number) {
 

@@ -17,7 +17,7 @@ namespace abschluss2 {
             //Bäume links
             for (let i: number = 0; i < 620; i++) {
                 crc2.fillStyle = "brown";
-                crc2.fillRect(i, 420, 10, -90);
+                crc2.fillRect(i-5, 420, 10, -90);
 
                 crc2.beginPath();
                 crc2.fillStyle = "green";
@@ -26,13 +26,14 @@ namespace abschluss2 {
                 crc2.arc(i, 340, 15, 0, 2 * Math.PI);
                 crc2.fill();
                 i = i + Math.random() * 150;
+                
             }
 
 
             //Bäume rechts
             for (let i: number = 660; i < 1280; i++) {
                 crc2.fillStyle = "brown";
-                crc2.fillRect(i, 420, 10, -90);
+                crc2.fillRect(i-5, 420, 10, -90);
                 crc2.beginPath();
                 crc2.fillStyle = "green";
                 crc2.arc(i + 10, 360, 15, 0, 2 * Math.PI);
@@ -51,6 +52,9 @@ namespace abschluss2 {
             crc2.lineTo(660, 420);
             crc2.lineTo(940, 720);
             crc2.fill();
+            crc2.strokeStyle = "darkgrey";
+            crc2.lineWidth = 5;
+            crc2.stroke();
 
             //Gras Links
             crc2.fillStyle = "green";
@@ -59,6 +63,7 @@ namespace abschluss2 {
             crc2.lineTo(0, 420);
             crc2.lineTo(620, 420);
             crc2.lineTo(340, 720);
+            crc2.lineWidth = 1;
             crc2.fill();
 
             //Gras Rechts

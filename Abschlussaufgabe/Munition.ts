@@ -3,6 +3,7 @@ namespace abschluss2 {
         x: number;
         y: number;
         removeValue: boolean = true;
+        button: HTMLDivElement = document.createElement("div");
 
 
 
@@ -12,6 +13,10 @@ namespace abschluss2 {
             this.y = _y;
         }
 
+        
+
+        
+        
         setRemoveValue(n: boolean): void {
             this.removeValue = n;
         }
