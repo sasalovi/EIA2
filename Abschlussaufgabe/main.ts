@@ -57,10 +57,6 @@ namespace abschluss2 {
         b.drawMountain(100, 100);
 
 
-
-
-
-
         for (let i: number = 0; i < 10; i++) {
             let s: Raumschiff = new Raumschiff(0, 0); //Instanz der Klasse wird erstellt
             shapes.push(s); //Raumschiff wird in das Array geladen
@@ -84,6 +80,19 @@ namespace abschluss2 {
         reloadButton.style.width = "290px";
         reloadButton.style.height = "100px";
         reloadButton.addEventListener("click", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
+         
+            var r: HTMLMediaElement = <HTMLMediaElement>document.getElementById("reload");
+            r.load();
+            r.play();
+            clicked = 0;
+            munizahl = 0;
+
+            for (let i: number = 0; i < muni.length; i++) {
+                muni[i].setRemoveValue(true);
+            }
+        });
+        
+                reloadButton.addEventListener("touch", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
          
             var r: HTMLMediaElement = <HTMLMediaElement>document.getElementById("reload");
             r.load();
@@ -149,7 +158,8 @@ namespace abschluss2 {
         for (let i: number = 0; i < document.getElementsByTagName("div").length; i++) {
 
             let div: HTMLDivElement = document.getElementsByTagName("div")[i];
-            div.addEventListener("click", remove);
+           // div.addEventListener("click", remove);
+            div.addEventListener("touch", remove);
             div.id = i + "";
 
         }
@@ -206,8 +216,8 @@ namespace abschluss2 {
             id.style.display = "none";
             let n: number = parseInt(id.id);
             shapes[n].setRaumschiffTod(true);
-            id.removeEventListener("click", remove);
-
+           // id.removeEventListener("click", remove);
+id.removeEventListener("touch", remove);
 
             //Punkte Berechnen und munition abziehen
             punkte = punkte + 30;

@@ -67,6 +67,16 @@ var abschluss2;
                 muni[i].setRemoveValue(true);
             }
         });
+        reloadButton.addEventListener("touch", function () {
+            var r = document.getElementById("reload");
+            r.load();
+            r.play();
+            clicked = 0;
+            munizahl = 0;
+            for (let i = 0; i < muni.length; i++) {
+                muni[i].setRemoveValue(true);
+            }
+        });
         reloadButton.style.backgroundColor = "rgba(0,0,0,0)";
         reloadButton.style.border = "none";
         reloadButton.style.outline = "none";
@@ -98,7 +108,8 @@ var abschluss2;
     function addListener() {
         for (let i = 0; i < document.getElementsByTagName("div").length; i++) {
             let div = document.getElementsByTagName("div")[i];
-            div.addEventListener("click", remove);
+            // div.addEventListener("click", remove);
+            div.addEventListener("touch", remove);
             div.id = i + "";
         }
     }
@@ -135,7 +146,8 @@ var abschluss2;
             id.style.display = "none";
             let n = parseInt(id.id);
             shapes[n].setRaumschiffTod(true);
-            id.removeEventListener("click", remove);
+            // id.removeEventListener("click", remove);
+            id.removeEventListener("touch", remove);
             //Punkte Berechnen und munition abziehen
             punkte = punkte + 30;
             punkteAnzeige.innerText = punkte.toString() + " Punkte";
