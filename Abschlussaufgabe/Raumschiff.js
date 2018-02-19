@@ -20,13 +20,22 @@ var abschluss2;
         }
         start() {
             //buttons generieren
-            this.button.style.position = "absolute";
-            //this.button.style.backgroundColor = "red";
-            this.button.style.top = (this.y - 18).toString() + "px";
-            this.button.style.left = this.x.toString() + "px";
+            //            this.button.style.position = "absolute";
+            //            this.button.style.backgroundColor = "red";
+            //            this.button.style.top = (this.y - 18).toString() + "px";
+            //            this.button.style.left = this.x.toString() + "px";
             this.button.style.width = "65px";
             this.button.style.height = "38px";
-            this.button.style.display = "inline";
+            //            this.button.style.display ="inline";
+            //responsive
+            let canvasWidth = document.getElementById("canvas");
+            var width = canvasWidth.scrollWidth;
+            var height = canvasWidth.scrollHeight;
+            let relation = width / window.innerWidth;
+            this.button.style.position = "absolute";
+            this.button.style.backgroundColor = "red";
+            this.button.style.left = (this.x * relation).toString() + "px";
+            this.button.style.top = (this.y - 18).toString() + "px";
             document.body.appendChild(this.button);
         }
         draw() {

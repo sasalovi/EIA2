@@ -40,7 +40,7 @@ namespace abschluss2 {
         punkteAnzeige.style.fontSize = "2em";
         punkteAnzeige.style.margin = "0";
         punkteAnzeige.style.color = "white";
-        punkteAnzeige.innerText = punkte.toString() +" Punkte";
+        punkteAnzeige.innerText = punkte.toString() + " Punkte";
 
         //Himmel
         var skygradient = crc2.createLinearGradient(0, 0, 0, 420);
@@ -80,7 +80,7 @@ namespace abschluss2 {
         reloadButton.style.width = "290px";
         reloadButton.style.height = "100px";
         reloadButton.addEventListener("click", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
-         
+
             var r: HTMLMediaElement = <HTMLMediaElement>document.getElementById("reload");
             r.load();
             r.play();
@@ -91,9 +91,9 @@ namespace abschluss2 {
                 muni[i].setRemoveValue(true);
             }
         });
-        
-                reloadButton.addEventListener("touch", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
-         
+
+        reloadButton.addEventListener("touchstart", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
+
             var r: HTMLMediaElement = <HTMLMediaElement>document.getElementById("reload");
             r.load();
             r.play();
@@ -104,7 +104,7 @@ namespace abschluss2 {
                 muni[i].setRemoveValue(true);
             }
         });
-        reloadButton.style.backgroundColor =  "rgba(0,0,0,0)";
+        reloadButton.style.backgroundColor = "rgba(0,0,0,0)";
         reloadButton.style.border = "none";
         reloadButton.style.outline = "none";
 
@@ -158,8 +158,8 @@ namespace abschluss2 {
         for (let i: number = 0; i < document.getElementsByTagName("div").length; i++) {
 
             let div: HTMLDivElement = document.getElementsByTagName("div")[i];
-           // div.addEventListener("click", remove);
-            div.addEventListener("touch", remove);
+            div.addEventListener("click", remove);
+            div.addEventListener("touchstart", remove);
             div.id = i + "";
 
         }
@@ -216,12 +216,12 @@ namespace abschluss2 {
             id.style.display = "none";
             let n: number = parseInt(id.id);
             shapes[n].setRaumschiffTod(true);
-           // id.removeEventListener("click", remove);
-id.removeEventListener("touch", remove);
+            id.removeEventListener("click", remove);
+            id.removeEventListener("touchstart", remove);
 
             //Punkte Berechnen und munition abziehen
             punkte = punkte + 30;
-            punkteAnzeige.innerText = punkte.toString()+ " Punkte";
+            punkteAnzeige.innerText = punkte.toString() + " Punkte";
             clicked = clicked + 1;
             muni[munizahl].setRemoveValue(false);
             munizahl++;
