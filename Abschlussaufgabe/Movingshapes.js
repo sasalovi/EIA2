@@ -3,6 +3,11 @@ var abschluss2;
     class Movingshapes {
         constructor(_x, _y) {
             this.RaumschiffTod = false;
+            this.canvasWidth = document.getElementById("canvas");
+            this.width = this.canvasWidth.scrollWidth;
+            this.height = this.canvasWidth.scrollHeight;
+            this.relation = this.width / window.innerWidth;
+            this.heightRel = this.height / window.innerHeight;
             this.x = _x;
             this.y = _y;
         }
@@ -26,7 +31,7 @@ var abschluss2;
         }
         moveDiv(i) {
             let div = document.getElementsByTagName("div")[i];
-            div.style.left = this.x.toString() + "px";
+            div.style.left = (this.x * this.relation * 1.5).toString() + "px";
         }
     }
     abschluss2.Movingshapes = Movingshapes;

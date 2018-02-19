@@ -18,33 +18,40 @@ namespace abschluss2 {
             if (this.x > 1270) {
                 this.button.style.display = "none";
             } else {
-                this.button.style.display = "inline";
+                this.button.style.display = "inline"; //Tut nicht was es soll bzw gar nichts
             }
 
 
 
             this.x += 2;
-        }
+            }
         start(): void {
+            //                                    let canvasWidth = document.getElementById("canvas");
+            //            var width = this.canvasWidth.scrollWidth;
+            //            var height = this.canvasWidth.scrollHeight;
+            //            let relation = width / window.innerWidth;
+            //            let heightRel = height / window.innerHeight;
+
             //buttons generieren
             //            this.button.style.position = "absolute";
             //            this.button.style.backgroundColor = "red";
             //            this.button.style.top = (this.y - 18).toString() + "px";
             //            this.button.style.left = this.x.toString() + "px";
-            this.button.style.width = "65px";
-            this.button.style.height = "38px";
+            this.button.style.width = 65 * this.relation + "px";
+            this.button.style.height = 38 * this.heightRel + "px";
             //            this.button.style.display ="inline";
             //responsive
-            let canvasWidth = document.getElementById("canvas");
-            var width = canvasWidth.scrollWidth;
-            var height = canvasWidth.scrollHeight;
-            let relation = width / window.innerWidth;
+
+
 
 
             this.button.style.position = "absolute";
             this.button.style.backgroundColor = "red";
-            this.button.style.left = (this.x * relation).toString() + "px";
-            this.button.style.top = (this.y - 18).toString() + "px";
+
+          
+            
+            this.button.style.left = (this.x).toString() + "px";
+            this.button.style.top = (this.y*this.heightRel+5).toString() + "px";
 
 
 

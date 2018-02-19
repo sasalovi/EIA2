@@ -52,11 +52,16 @@ var abschluss2;
             xOffset = xOffset + 50;
         }
         //Nachladebutton generieren für Handy ansicht   
+        let canvasWidth = document.getElementById("canvas");
+        let width = canvasWidth.scrollWidth;
+        let height = canvasWidth.scrollHeight;
+        let relation = width / window.innerWidth;
+        let heightRel = height / window.innerHeight;
         reloadButton.style.position = "absolute";
-        reloadButton.style.top = (607).toString() + "px";
-        reloadButton.style.left = (955).toString() + "px";
-        reloadButton.style.width = "290px";
-        reloadButton.style.height = "100px";
+        reloadButton.style.top = (607 * heightRel + 80).toString() + "px";
+        reloadButton.style.left = (955 * relation * 1.5).toString() + "px";
+        reloadButton.style.width = 290 * relation * 1.5 + "px";
+        reloadButton.style.height = 100 * heightRel + 15 + "px";
         reloadButton.addEventListener("click", function () {
             var r = document.getElementById("reload");
             r.load();
@@ -77,9 +82,9 @@ var abschluss2;
                 muni[i].setRemoveValue(true);
             }
         });
-        reloadButton.style.backgroundColor = "rgba(0,0,0,0)";
-        reloadButton.style.border = "none";
-        reloadButton.style.outline = "none";
+        //        reloadButton.style.backgroundColor = "rgba(0,0,0,0)";
+        //        reloadButton.style.border = "none";
+        //        reloadButton.style.outline = "none";
         document.body.appendChild(reloadButton);
         addListener();
         startCountdown();

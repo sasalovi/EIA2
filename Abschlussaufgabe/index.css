@@ -9,15 +9,14 @@ body {
 	margin: 0;
 }
 
-canvas {
-	width: 100%;
-}
+
+
 
 
 
 @media screen and (min-width: 1024px) { 
 	
 	canvas {
-		width: 1280px;
+		width: 50%;
 	}
 }
