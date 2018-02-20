@@ -30,7 +30,7 @@ var abschluss2;
         height = canvasWidth.scrollHeight;
         relation = width / canvasWidth.width;
         heightRel = height / canvasWidth.height;
-        if ((window.innerHeight / window.innerWidth) < 1 && window.innerHeight < 768) {
+        if ((window.innerHeight / window.innerWidth) < 1 && window.innerHeight > 768) {
             alert("Bitte drehe dein Gerät");
         }
         let canvas = document.getElementsByTagName("canvas")[0]; //Array f�r den Fall dass mehrere Canvas vorhanden sind
