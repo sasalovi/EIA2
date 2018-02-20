@@ -6,8 +6,14 @@ namespace abschluss2 {
         canvasWidth: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("canvas");
         width: number = this.canvasWidth.scrollWidth;
         height: number = this.canvasWidth.scrollHeight;
-        relation: number = this.width / window.innerWidth;
-        heightRel: number = this.height / window.innerHeight;
+       // relation: number = this.width / window.innerWidth;
+       // heightRel: number = this.height / window.innerHeight;
+        
+        relation: number = this.width / this.canvasWidth.width;
+        heightRel: number = this.height / this.canvasWidth.height;
+        canv2: number = this.canvasWidth.width;
+        
+        
 
         constructor(_x: number, _y: number) {
             this.x = _x;
@@ -18,6 +24,8 @@ namespace abschluss2 {
             if (this.RaumschiffTod == false) {
                 this.move(); //this für Zugriff auf inhalte der Klasse
                 this.draw();
+//                alert(this.relation);
+                
             }
         }
 
@@ -38,7 +46,7 @@ namespace abschluss2 {
         moveDiv(i: number) {
 
             let div: HTMLDivElement = document.getElementsByTagName("div")[i];
-            div.style.left = (this.x*this.relation*1.5).toString() + "px";
+            div.style.left = (this.x*this.relation).toString() + "px";
             
 
 

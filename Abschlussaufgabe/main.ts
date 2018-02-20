@@ -76,16 +76,16 @@ namespace abschluss2 {
        let canvasWidth: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("canvas");
        let width: number = canvasWidth.scrollWidth;
        let height: number = canvasWidth.scrollHeight;
-       let relation: number = width / window.innerWidth;
-       let heightRel: number = height / window.innerHeight;
+        let relation: number = width / canvasWidth.width;
+        let heightRel: number = height / canvasWidth.height;
         
         
         
         reloadButton.style.position = "absolute";
-        reloadButton.style.top = (607*heightRel+80).toString() + "px";
-        reloadButton.style.left = (955*relation*1.5).toString() + "px";
-        reloadButton.style.width = 290*relation*1.5 + "px";
-        reloadButton.style.height = 100*heightRel+15 + "px";
+        reloadButton.style.top = (590*heightRel).toString() + "px";
+        reloadButton.style.left = (955*relation).toString() + "px";
+        reloadButton.style.width = 290*relation + "px";
+        reloadButton.style.height = 100*heightRel + "px";
         reloadButton.addEventListener("click", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
 
             var r: HTMLMediaElement = <HTMLMediaElement>document.getElementById("reload");

@@ -5,6 +5,7 @@ var abschluss2;
             super(_x + Math.random() * 800, _y + Math.random() * 100 + 80);
             //        button: HTMLButtonElement = document.createElement("button");
             this.button = document.createElement("div");
+            this.upRel = 20;
         }
         move() {
             if (this.x > 1280) {
@@ -35,8 +36,8 @@ var abschluss2;
             //responsive
             this.button.style.position = "absolute";
             this.button.style.backgroundColor = "red";
-            this.button.style.left = (this.x).toString() + "px";
-            this.button.style.top = (this.y * this.heightRel + 5).toString() + "px";
+            this.button.style.left = (this.x * this.relation).toString() + "px";
+            this.button.style.top = ((this.y * this.heightRel) - (this.upRel * this.relation)).toString() + "px";
             document.body.appendChild(this.button);
         }
         draw() {

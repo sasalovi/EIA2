@@ -2,6 +2,7 @@ namespace abschluss2 {
     export class Raumschiff extends Movingshapes {
         //        button: HTMLButtonElement = document.createElement("button");
         button: HTMLDivElement = document.createElement("div");
+        upRel: number = 20;
 
 
 
@@ -50,8 +51,8 @@ namespace abschluss2 {
 
           
             
-            this.button.style.left = (this.x).toString() + "px";
-            this.button.style.top = (this.y*this.heightRel+5).toString() + "px";
+            this.button.style.left = (this.x*this.relation).toString() + "px";
+            this.button.style.top = ((this.y*this.heightRel)-(this.upRel*this.relation)).toString() + "px";
 
 
 

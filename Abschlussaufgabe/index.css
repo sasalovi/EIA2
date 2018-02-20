@@ -10,7 +10,7 @@ body {
 }
 
 canvas {
-	width: 30%
+	width: 20%
 }
 
 
@@ -21,6 +21,6 @@ canvas {
 @media screen and (min-width: 1024px) { 
 	
 	canvas {
-		width: 50%;
+		width: 70%;
 	}
 }

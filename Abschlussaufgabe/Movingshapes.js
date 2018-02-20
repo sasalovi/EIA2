@@ -6,8 +6,11 @@ var abschluss2;
             this.canvasWidth = document.getElementById("canvas");
             this.width = this.canvasWidth.scrollWidth;
             this.height = this.canvasWidth.scrollHeight;
-            this.relation = this.width / window.innerWidth;
-            this.heightRel = this.height / window.innerHeight;
+            // relation: number = this.width / window.innerWidth;
+            // heightRel: number = this.height / window.innerHeight;
+            this.relation = this.width / this.canvasWidth.width;
+            this.heightRel = this.height / this.canvasWidth.height;
+            this.canv2 = this.canvasWidth.width;
             this.x = _x;
             this.y = _y;
         }
@@ -31,7 +34,7 @@ var abschluss2;
         }
         moveDiv(i) {
             let div = document.getElementsByTagName("div")[i];
-            div.style.left = (this.x * this.relation * 1.5).toString() + "px";
+            div.style.left = (this.x * this.relation).toString() + "px";
         }
     }
     abschluss2.Movingshapes = Movingshapes;
