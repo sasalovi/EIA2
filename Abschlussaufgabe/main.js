@@ -18,19 +18,41 @@ var abschluss2;
     var counter = 120;
     var counterID;
     var reloadButton = document.createElement("button");
+    let canvasWidth;
+    let width;
+    let height;
+    let relation;
+    let heightRel;
     var image;
     function shooter() {
+        canvasWidth = document.getElementById("canvas");
+        width = canvasWidth.scrollWidth;
+        height = canvasWidth.scrollHeight;
+        relation = width / canvasWidth.width;
+        heightRel = height / canvasWidth.height;
         let canvas = document.getElementsByTagName("canvas")[0]; //Array f�r den Fall dass mehrere Canvas vorhanden sind
         abschluss2.crc2 = canvas.getContext("2d");
         //Statische Objekte zeichnen
         punkteAnzeige = document.getElementById("punkte");
         punkteAnzeige.style.position = "absolute";
-        punkteAnzeige.style.left = "20px";
-        punkteAnzeige.style.top = "10px";
-        punkteAnzeige.style.fontSize = "2em";
+        punkteAnzeige.style.left = 20 * relation + "px";
+        punkteAnzeige.style.top = 5 * relation + "%";
         punkteAnzeige.style.margin = "0";
         punkteAnzeige.style.color = "white";
         punkteAnzeige.innerText = punkte.toString() + " Punkte";
+        if (window.innerWidth > 1280) {
+            punkteAnzeige.style.fontSize = "2em";
+            punkteAnzeige.style.top = 2 * relation + "%";
+        }
+        else if (window.innerWidth > 768) {
+            punkteAnzeige.style.fontSize = "1.5em";
+        }
+        else if (window.innerWidth > 570) {
+            punkteAnzeige.style.fontSize = "1em";
+        }
+        else {
+            punkteAnzeige.style.fontSize = "0.5em";
+        }
         //Himmel
         var skygradient = abschluss2.crc2.createLinearGradient(0, 0, 0, 420);
         skygradient.addColorStop(0, "#0099ff");
@@ -52,11 +74,6 @@ var abschluss2;
             xOffset = xOffset + 50;
         }
         //Nachladebutton generieren für Handy ansicht   
-        let canvasWidth = document.getElementById("canvas");
-        let width = canvasWidth.scrollWidth;
-        let height = canvasWidth.scrollHeight;
-        let relation = width / canvasWidth.width;
-        let heightRel = height / canvasWidth.height;
         reloadButton.style.position = "absolute";
         reloadButton.style.top = (590 * heightRel).toString() + "px";
         reloadButton.style.left = (955 * relation).toString() + "px";
@@ -102,13 +119,26 @@ var abschluss2;
         // counterID.innerText = counter.toString();
         counterID = document.getElementById("timer");
         counterID.style.position = "absolute";
-        counterID.style.left = "20px";
-        counterID.style.top = "45px";
+        counterID.style.left = 20 * relation + "px";
+        counterID.style.top = 15 * relation + "%";
         counterID.style.fontSize = "2em";
         counterID.style.margin = "0";
         counterID.style.color = "white";
         counterID.innerText = counter.toString() + " Sekunden";
         window.setTimeout(startCountdown, 1000);
+        if (window.innerWidth > 1280) {
+            counterID.style.fontSize = "2em";
+            counterID.style.top = 8 * relation + "%";
+        }
+        else if (window.innerWidth > 768) {
+            counterID.style.fontSize = "1.5em";
+        }
+        else if (window.innerWidth > 570) {
+            counterID.style.fontSize = "1em";
+        }
+        else {
+            counterID.style.fontSize = "0.5em";
+        }
     }
     function addListener() {
         for (let i = 0; i < document.getElementsByTagName("div").length; i++) {

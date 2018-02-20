@@ -22,11 +22,31 @@ namespace abschluss2 {
     var counter: number = 120;
     var counterID: HTMLParagraphElement;
     var reloadButton: HTMLButtonElement = document.createElement("button");
+
+    let canvasWidth: HTMLCanvasElement;
+    let width: number;
+    let height: number;
+    let relation: number;
+    let heightRel: number;
+
 
     var image: any;
 
 
     function shooter(): void {
+
+        canvasWidth = <HTMLCanvasElement>document.getElementById("canvas");
+        width = canvasWidth.scrollWidth;
+        height = canvasWidth.scrollHeight;
+        relation = width / canvasWidth.width;
+        heightRel = height / canvasWidth.height;
+
+
+
+
+
+        
+
         let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0]; //Array f�r den Fall dass mehrere Canvas vorhanden sind
 
         crc2 = canvas.getContext("2d");
@@ -35,12 +55,25 @@ namespace abschluss2 {
 
         punkteAnzeige = <HTMLParagraphElement>document.getElementById("punkte");
         punkteAnzeige.style.position = "absolute";
-        punkteAnzeige.style.left = "20px";
-        punkteAnzeige.style.top = "10px";
-        punkteAnzeige.style.fontSize = "2em";
+        punkteAnzeige.style.left = 20*relation + "px";
+        punkteAnzeige.style.top = 5*relation + "%";
         punkteAnzeige.style.margin = "0";
         punkteAnzeige.style.color = "white";
         punkteAnzeige.innerText = punkte.toString() + " Punkte";
+
+        if (window.innerWidth > 1280) {
+            punkteAnzeige.style.fontSize = "2em";
+            punkteAnzeige.style.top = 2*relation + "%";
+        } else if (window.innerWidth > 768) {
+            punkteAnzeige.style.fontSize = "1.5em";
+        } else if (window.innerWidth > 570) {
+            punkteAnzeige.style.fontSize = "1em";
+        } else {
+            punkteAnzeige.style.fontSize = "0.5em";
+        }
+
+
+
 
         //Himmel
         var skygradient = crc2.createLinearGradient(0, 0, 0, 420);
@@ -73,19 +106,15 @@ namespace abschluss2 {
         }
 
         //Nachladebutton generieren für Handy ansicht   
-       let canvasWidth: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("canvas");
-       let width: number = canvasWidth.scrollWidth;
-       let height: number = canvasWidth.scrollHeight;
-        let relation: number = width / canvasWidth.width;
-        let heightRel: number = height / canvasWidth.height;
-        
-        
-        
+
+
+
+
         reloadButton.style.position = "absolute";
-        reloadButton.style.top = (590*heightRel).toString() + "px";
-        reloadButton.style.left = (955*relation).toString() + "px";
-        reloadButton.style.width = 290*relation + "px";
-        reloadButton.style.height = 100*heightRel + "px";
+        reloadButton.style.top = (590 * heightRel).toString() + "px";
+        reloadButton.style.left = (955 * relation).toString() + "px";
+        reloadButton.style.width = 290 * relation + "px";
+        reloadButton.style.height = 100 * heightRel + "px";
         reloadButton.addEventListener("click", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
 
             var r: HTMLMediaElement = <HTMLMediaElement>document.getElementById("reload");
@@ -111,9 +140,9 @@ namespace abschluss2 {
                 muni[i].setRemoveValue(true);
             }
         });
-//        reloadButton.style.backgroundColor = "rgba(0,0,0,0)";
-//        reloadButton.style.border = "none";
-//        reloadButton.style.outline = "none";
+        //        reloadButton.style.backgroundColor = "rgba(0,0,0,0)";
+        //        reloadButton.style.border = "none";
+        //        reloadButton.style.outline = "none";
 
 
         document.body.appendChild(reloadButton);
@@ -152,13 +181,27 @@ namespace abschluss2 {
         // counterID.innerText = counter.toString();
         counterID = <HTMLParagraphElement>document.getElementById("timer");
         counterID.style.position = "absolute";
-        counterID.style.left = "20px";
-        counterID.style.top = "45px";
+        counterID.style.left = 20*relation + "px";
+        counterID.style.top = 15*relation + "%";
         counterID.style.fontSize = "2em";
         counterID.style.margin = "0";
         counterID.style.color = "white";
         counterID.innerText = counter.toString() + " Sekunden";
         window.setTimeout(startCountdown, 1000);
+
+
+        if (window.innerWidth > 1280) {
+            counterID.style.fontSize = "2em";
+            counterID.style.top = 8*relation + "%";
+        } else if (window.innerWidth > 768) {
+            counterID.style.fontSize = "1.5em";
+        } else if (window.innerWidth > 570) {
+            counterID.style.fontSize = "1em";
+        } else {
+            counterID.style.fontSize = "0.5em";
+        }
+
+
     }
 
     function addListener(): void {
