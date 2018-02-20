@@ -30,9 +30,10 @@ var abschluss2;
         height = canvasWidth.scrollHeight;
         relation = width / canvasWidth.width;
         heightRel = height / canvasWidth.height;
-        if ((window.innerHeight / window.innerWidth) < 1 && window.innerWidth < 1280) {
+        if ((window.innerHeight / window.innerWidth) < 1 && window.innerWidth < 768) {
             alert("Bitte drehe dein Gerät");
         }
+        alert(window.innerWidth);
         let canvas = document.getElementsByTagName("canvas")[0]; //Array f�r den Fall dass mehrere Canvas vorhanden sind
         abschluss2.crc2 = canvas.getContext("2d");
         //Statische Objekte zeichnen

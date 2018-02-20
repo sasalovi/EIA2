@@ -41,10 +41,10 @@ namespace abschluss2 {
         relation = width / canvasWidth.width;
         heightRel = height / canvasWidth.height;
 
-        if ((window.innerHeight / window.innerWidth) < 1 && window.innerWidth < 1280) {
+        if ((window.innerHeight / window.innerWidth) < 1 && window.innerWidth < 768) {
             alert("Bitte drehe dein Gerät");
         }
-
+        alert(window.innerWidth);
 
         
 
