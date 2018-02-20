@@ -10,25 +10,25 @@ body {
 }
 
 canvas {
-	width: 90%
+	width: 70%
 }
 
 
-/* @media screen and (min-width: 570px) {  */
+@media screen and (min-width: 570px) { 
 	
-/* 	canvas { */
-/* 		width: 70%; */
-/* 	} */
-/* } */
+	canvas {
+		width: 50%;
+	}
+}
 
 
 
-/* @media screen and (min-width: 768px) {  */
+@media screen and (min-width: 768px) { 
 	
-/* 	canvas { */
-/* 		width: 70%; */
-/* 	} */
-/* } */
+	canvas {
+		width: 60%;
+	}
+}
 
 
 
