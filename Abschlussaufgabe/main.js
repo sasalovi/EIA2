@@ -15,8 +15,9 @@ var abschluss2;
     var clicked = 0;
     var maxMun = 6;
     var munizahl = 0;
-    var counter = 120;
+    var counter = 10;
     var counterID;
+    let counterStop = false;
     var reloadButton = document.createElement("button");
     let canvasWidth;
     let width;
@@ -30,8 +31,8 @@ var abschluss2;
         height = canvasWidth.scrollHeight;
         relation = width / canvasWidth.width;
         heightRel = height / canvasWidth.height;
-        if ((window.innerHeight / window.innerWidth) < 1 && window.innerHeight > 768) {
-            alert("Bitte drehe dein Gerät");
+        if (window.innerHeight > window.innerWidth) {
+            alert("Bitte drehe dein Gerät!");
         }
         let canvas = document.getElementsByTagName("canvas")[0]; //Array f�r den Fall dass mehrere Canvas vorhanden sind
         abschluss2.crc2 = canvas.getContext("2d");
@@ -39,10 +40,11 @@ var abschluss2;
         punkteAnzeige = document.getElementById("punkte");
         punkteAnzeige.style.position = "absolute";
         punkteAnzeige.style.left = 20 * relation + "px";
-        punkteAnzeige.style.top = 5 * relation + "%";
+        punkteAnzeige.style.top = 5 * relation + "px";
         punkteAnzeige.style.margin = "0";
         punkteAnzeige.style.color = "white";
         punkteAnzeige.innerText = punkte.toString() + " Punkte";
+        punkteAnzeige.style.zIndex = "99";
         if (window.innerWidth > 1280) {
             punkteAnzeige.style.fontSize = "2em";
             punkteAnzeige.style.top = 2 * relation + "%";
@@ -82,6 +84,7 @@ var abschluss2;
         reloadButton.style.left = (955 * relation).toString() + "px";
         reloadButton.style.width = 290 * relation + "px";
         reloadButton.style.height = 100 * heightRel + "px";
+        reloadButton.id = "reloadButton";
         reloadButton.addEventListener("click", function () {
             var r = document.getElementById("reload");
             r.load();
@@ -112,23 +115,26 @@ var abschluss2;
         animate();
     }
     function startCountdown() {
-        //            for (let counter: number = 10; counter >= 0; counte        
         if (counter > 0) {
             counter = counter - 1;
         }
-        else if (counter == 0) {
-            alert("Deine Punktzahl beträgt " + punkte);
+        else if (counter == 0 && counterStop == false) {
+            counterStop = true;
+            endscreen();
         }
-        // counterID.innerText = counter.toString();
+        //Counter Styling
         counterID = document.getElementById("timer");
         counterID.style.position = "absolute";
         counterID.style.left = 20 * relation + "px";
-        counterID.style.top = 15 * relation + "%";
+        counterID.style.top = 60 * relation + "px";
         counterID.style.fontSize = "2em";
         counterID.style.margin = "0";
         counterID.style.color = "white";
         counterID.innerText = counter.toString() + " Sekunden";
-        window.setTimeout(startCountdown, 1000);
+        counterID.style.zIndex = "99";
+        if (counterStop == false) {
+            window.setTimeout(startCountdown, 1000);
+        }
         if (window.innerWidth > 1280) {
             counterID.style.fontSize = "2em";
             counterID.style.top = 8 * relation + "%";
@@ -142,6 +148,50 @@ var abschluss2;
         else {
             counterID.style.fontSize = "0.5em";
         }
+    }
+    function endscreen() {
+        //Clickflächen aufräumen
+        for (let i = 0; i < document.getElementsByTagName("div").length; i++) {
+            let div = document.getElementsByTagName("div")[i];
+            div.removeEventListener("click", remove);
+        }
+        console.log(document.getElementById("reloadButton"));
+        document.getElementById("reloadButton").remove();
+        canvasWidth.style.filter = "blur(5px)";
+        let h2 = document.createElement("h2");
+        h2.innerText = "Deine Punktzahl beträgt " + punkte + " Punkte!";
+        h2.style.position = "absolute";
+        h2.style.top = "0";
+        h2.style.color = "white";
+        h2.style.left = 20 * relation + "px";
+        h2.style.marginTop = "0";
+        h2.id = "endscreenH2";
+        let newGame = document.createElement("button");
+        newGame.addEventListener("click", initialize);
+        newGame.innerText = "Neues Spiel";
+        newGame.style.position = "absolute";
+        newGame.style.top = 40 * relation + "px";
+        newGame.style.left = 20 * relation + "px";
+        newGame.id = "endscreenButton";
+        //        document.body.appendChild(div1);
+        document.body.appendChild(h2);
+        document.body.appendChild(newGame);
+    }
+    function initialize() {
+        document.getElementById("endscreenH2").remove();
+        document.getElementById("endscreenButton").remove();
+        shapes = [];
+        muni = [];
+        counter = 10;
+        counterStop = false;
+        canvasWidth.style.filter = "blur(0px)";
+        for (let i = 10; i == document.getElementsByTagName("div").length; i--) {
+            if (i > 0) {
+                let e = document.getElementsByTagName("div")[i - 1];
+                e.remove();
+            }
+        }
+        shooter();
     }
     function addListener() {
         for (let i = 0; i < document.getElementsByTagName("div").length; i++) {

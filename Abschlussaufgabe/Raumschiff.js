@@ -4,7 +4,7 @@ var abschluss2;
         constructor(_x, _y) {
             super(_x + Math.random() * 800, _y + Math.random() * 100 + 80);
             //        button: HTMLButtonElement = document.createElement("button");
-            this.button = document.createElement("div");
+            this.clickDiv = document.createElement("div");
             this.upRel = 20;
         }
         move() {
@@ -12,33 +12,21 @@ var abschluss2;
                 this.x = Math.random();
             }
             if (this.x > 1270) {
-                this.button.style.display = "none";
+                this.clickDiv.style.display = "none";
             }
             else {
-                this.button.style.display = "inline"; //Tut nicht was es soll bzw gar nichts
+                this.clickDiv.style.display = "inline"; //Tut nicht was es soll bzw gar nichts
             }
             this.x += 2;
         }
         start() {
-            //                                    let canvasWidth = document.getElementById("canvas");
-            //            var width = this.canvasWidth.scrollWidth;
-            //            var height = this.canvasWidth.scrollHeight;
-            //            let relation = width / window.innerWidth;
-            //            let heightRel = height / window.innerHeight;
-            //buttons generieren
-            //            this.button.style.position = "absolute";
-            //            this.button.style.backgroundColor = "red";
-            //            this.button.style.top = (this.y - 18).toString() + "px";
-            //            this.button.style.left = this.x.toString() + "px";
-            this.button.style.width = 65 * this.relation + "px";
-            this.button.style.height = 38 * this.heightRel + "px";
-            //            this.button.style.display ="inline";
-            //responsive
-            this.button.style.position = "absolute";
-            this.button.style.backgroundColor = "red";
-            this.button.style.left = (this.x * this.relation).toString() + "px";
-            this.button.style.top = ((this.y * this.heightRel) - (this.upRel * this.relation)).toString() + "px";
-            document.body.appendChild(this.button);
+            this.clickDiv.style.width = 65 * this.relation + "px";
+            this.clickDiv.style.height = 38 * this.heightRel + "px";
+            this.clickDiv.style.position = "absolute";
+            this.clickDiv.style.backgroundColor = "red";
+            this.clickDiv.style.left = (this.x * this.relation).toString() + "px";
+            this.clickDiv.style.top = ((this.y * this.heightRel) - (this.upRel * this.relation)).toString() + "px";
+            document.body.appendChild(this.clickDiv);
         }
         draw() {
             abschluss2.crc2.beginPath();

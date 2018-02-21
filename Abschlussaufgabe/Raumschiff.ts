@@ -1,7 +1,7 @@
 namespace abschluss2 {
     export class Raumschiff extends Movingshapes {
         //        button: HTMLButtonElement = document.createElement("button");
-        button: HTMLDivElement = document.createElement("div");
+        clickDiv: HTMLDivElement = document.createElement("div");
         upRel: number = 20;
 
 
@@ -17,9 +17,9 @@ namespace abschluss2 {
             }
 
             if (this.x > 1270) {
-                this.button.style.display = "none";
+                this.clickDiv.style.display = "none";
             } else {
-                this.button.style.display = "inline"; //Tut nicht was es soll bzw gar nichts
+                this.clickDiv.style.display = "inline"; //Tut nicht was es soll bzw gar nichts
             }
 
 
@@ -27,36 +27,16 @@ namespace abschluss2 {
             this.x += 2;
             }
         start(): void {
-            //                                    let canvasWidth = document.getElementById("canvas");
-            //            var width = this.canvasWidth.scrollWidth;
-            //            var height = this.canvasWidth.scrollHeight;
-            //            let relation = width / window.innerWidth;
-            //            let heightRel = height / window.innerHeight;
 
-            //buttons generieren
-            //            this.button.style.position = "absolute";
-            //            this.button.style.backgroundColor = "red";
-            //            this.button.style.top = (this.y - 18).toString() + "px";
-            //            this.button.style.left = this.x.toString() + "px";
-            this.button.style.width = 65 * this.relation + "px";
-            this.button.style.height = 38 * this.heightRel + "px";
-            //            this.button.style.display ="inline";
-            //responsive
+            this.clickDiv.style.width = 65 * this.relation + "px";
+            this.clickDiv.style.height = 38 * this.heightRel + "px";
+            this.clickDiv.style.position = "absolute";
+            this.clickDiv.style.backgroundColor = "red";          
+            this.clickDiv.style.left = (this.x*this.relation).toString() + "px";
+            this.clickDiv.style.top = ((this.y*this.heightRel)-(this.upRel*this.relation)).toString() + "px";
 
 
-
-
-            this.button.style.position = "absolute";
-            this.button.style.backgroundColor = "red";
-
-          
-            
-            this.button.style.left = (this.x*this.relation).toString() + "px";
-            this.button.style.top = ((this.y*this.heightRel)-(this.upRel*this.relation)).toString() + "px";
-
-
-
-            document.body.appendChild(this.button);
+            document.body.appendChild(this.clickDiv);
 
         }
 
