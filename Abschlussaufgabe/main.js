@@ -15,7 +15,7 @@ var abschluss2;
     var clicked = 0;
     var maxMun = 6;
     var munizahl = 0;
-    var counter = 1;
+    var counter = 30;
     var counterID;
     let counterStop = false;
     var reloadButton = document.createElement("button");
@@ -85,6 +85,9 @@ var abschluss2;
         reloadButton.style.width = 290 * relation + "px";
         reloadButton.style.height = 100 * heightRel + "px";
         reloadButton.id = "reloadButton";
+        reloadButton.style.border = "none";
+        reloadButton.style.outline = "none";
+        reloadButton.style.opacity = "0";
         reloadButton.addEventListener("click", function () {
             var r = document.getElementById("reload");
             r.load();

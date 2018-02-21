@@ -19,7 +19,7 @@ namespace abschluss2 {
     var clicked: number = 0;
     var maxMun: number = 6;
     var munizahl: number = 0;
-    var counter: number = 1;
+    var counter: number = 30;
     var counterID: HTMLParagraphElement;
     let counterStop: boolean = false;
     var reloadButton: HTMLButtonElement = document.createElement("button");
@@ -123,6 +123,9 @@ namespace abschluss2 {
         reloadButton.style.width = 290 * relation + "px";
         reloadButton.style.height = 100 * heightRel + "px";
         reloadButton.id = "reloadButton";
+        reloadButton.style.border = "none";
+        reloadButton.style.outline = "none";
+        reloadButton.style.opacity = "0";
         reloadButton.addEventListener("click", function(): void { //Anonyme Funktion erforderlich um Parameter zu �bergeben
 
             var r: HTMLMediaElement = <HTMLMediaElement>document.getElementById("reload");

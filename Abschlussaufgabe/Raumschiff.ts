@@ -32,7 +32,7 @@ namespace abschluss2 {
             this.clickDiv.style.width = 65 * this.relation + "px";
             this.clickDiv.style.height = 38 * this.heightRel + "px";
             this.clickDiv.style.position = "absolute";
-            this.clickDiv.style.backgroundColor = "red";          
+//            this.clickDiv.style.backgroundColor = "red";          
             this.clickDiv.style.left = (this.x*this.relation).toString() + "px";
             this.clickDiv.style.top = ((this.y*this.heightRel)-(this.upRel*this.relation)).toString() + "px";
 
