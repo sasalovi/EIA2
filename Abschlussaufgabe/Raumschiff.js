@@ -45,10 +45,6 @@ var abschluss2;
             abschluss2.crc2.fill();
             abschluss2.crc2.closePath();
         }
-        init() {
-            this.x = 0;
-            this.y = 0;
-        }
     }
     abschluss2.Raumschiff = Raumschiff;
 })(abschluss2 || (abschluss2 = {}));

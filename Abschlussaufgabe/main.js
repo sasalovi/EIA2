@@ -15,7 +15,7 @@ var abschluss2;
     var clicked = 0;
     var maxMun = 6;
     var munizahl = 0;
-    var counter = 10;
+    var counter = 1;
     var counterID;
     let counterStop = false;
     var reloadButton = document.createElement("button");
@@ -32,7 +32,7 @@ var abschluss2;
         relation = width / canvasWidth.width;
         heightRel = height / canvasWidth.height;
         if (window.innerHeight > window.innerWidth) {
-            alert("Bitte drehe dein Gerät!");
+            alert("Bitte drehe dein Gerät und drücke dann auf OK!");
         }
         let canvas = document.getElementsByTagName("canvas")[0]; //Array f�r den Fall dass mehrere Canvas vorhanden sind
         abschluss2.crc2 = canvas.getContext("2d");
@@ -105,9 +105,6 @@ var abschluss2;
                 muni[i].setRemoveValue(true);
             }
         });
-        //        reloadButton.style.backgroundColor = "rgba(0,0,0,0)";
-        //        reloadButton.style.border = "none";
-        //        reloadButton.style.outline = "none";
         document.body.appendChild(reloadButton);
         addListener();
         startCountdown();
@@ -155,9 +152,10 @@ var abschluss2;
         for (let i = 0; i < document.getElementsByTagName("div").length; i++) {
             let div = document.getElementsByTagName("div")[i];
             div.removeEventListener("click", remove);
+            div.removeEventListener("click", remove);
         }
         document.getElementById("reloadButton").remove();
-        canvasWidth.style.filter = "blur(5px)";
+        canvasWidth.style.filter = "blur(7px)";
         counterID.style.display = "none";
         punkteAnzeige.style.display = "none";
         let h2 = document.createElement("h2");
@@ -166,15 +164,33 @@ var abschluss2;
         h2.style.top = "0";
         h2.style.color = "white";
         h2.style.left = 20 * relation + "px";
-        h2.style.marginTop = "0";
+        h2.style.margin = "0";
         h2.id = "endscreenH2";
         let newGame = document.createElement("button");
         newGame.addEventListener("click", initialize);
         newGame.innerText = "Neues Spiel";
         newGame.style.position = "absolute";
         newGame.style.top = (590 * heightRel).toString() + "px";
-        newGame.style.left = (955 * relation).toString() + "px";
+        newGame.style.left = (945 * relation).toString() + "px";
         newGame.id = "endscreenButton";
+        if (window.innerWidth > 1280) {
+            h2.style.fontSize = "3em";
+            h2.style.top = 10 * relation + "px";
+            newGame.style.fontSize = "3em";
+        }
+        else if (window.innerWidth > 768) {
+            h2.style.fontSize = "1.5em";
+            newGame.style.fontSize = "1.2em";
+        }
+        else if (window.innerWidth > 570) {
+            h2.style.fontSize = "1.3em";
+        }
+        else {
+            h2.style.fontSize = "0.7em";
+            h2.style.top = 40 * relation + "px";
+            newGame.style.left = (750 * relation).toString() + "px";
+            newGame.style.fontSize = "0.7em";
+        }
         //        document.body.appendChild(div1);
         document.body.appendChild(h2);
         document.body.appendChild(newGame);
@@ -182,9 +198,6 @@ var abschluss2;
     function initialize() {
         document.getElementById("endscreenH2").remove();
         document.getElementById("endscreenButton").remove();
-        for (let i = 0; i < shapes.length; i++) {
-            shapes[1].init();
-        }
         shapes = [];
         muni = [];
         counter = 10;
@@ -196,13 +209,15 @@ var abschluss2;
                 e.remove();
             }
         }
+        counterID.style.display = "inline";
+        punkteAnzeige.style.display = "inline";
         shooter();
     }
     function addListener() {
         for (let i = 0; i < document.getElementsByTagName("div").length; i++) {
             let div = document.getElementsByTagName("div")[i];
             div.addEventListener("click", remove);
-            div.addEventListener("touchstart", remove);
+            div.removeEventListener("touchstart", remove);
             div.id = i + "";
         }
     }
@@ -229,7 +244,9 @@ var abschluss2;
         for (let i = 0; i < muni.length; i++) {
             muni[i].draw();
         }
-        window.setTimeout(animate, 20); //
+        if (counterStop == false) {
+            window.setTimeout(animate, 20);
+        }
     }
     function remove(_event) {
         if (clicked < maxMun) {

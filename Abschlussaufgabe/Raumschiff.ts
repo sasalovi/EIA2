@@ -65,12 +65,6 @@ namespace abschluss2 {
             crc2.closePath();
         }
         
-        init(): void {
-           
-            this.x = 0;
-            this.y = 0;
-            
-            }
 
 
 

@@ -19,7 +19,7 @@ namespace abschluss2 {
     var clicked: number = 0;
     var maxMun: number = 6;
     var munizahl: number = 0;
-    var counter: number = 10;
+    var counter: number = 1;
     var counterID: HTMLParagraphElement;
     let counterStop: boolean = false;
     var reloadButton: HTMLButtonElement = document.createElement("button");
@@ -35,7 +35,7 @@ namespace abschluss2 {
 
 
     function shooter(): void {
-       
+
 
 
 
@@ -46,7 +46,7 @@ namespace abschluss2 {
         heightRel = height / canvasWidth.height;
 
         if (window.innerHeight > window.innerWidth) {
-            alert("Bitte drehe dein Gerät!");
+            alert("Bitte drehe dein Gerät und drücke dann auf OK!");
         }
 
 
@@ -148,9 +148,6 @@ namespace abschluss2 {
                 muni[i].setRemoveValue(true);
             }
         });
-        //        reloadButton.style.backgroundColor = "rgba(0,0,0,0)";
-        //        reloadButton.style.border = "none";
-        //        reloadButton.style.outline = "none";
 
 
         document.body.appendChild(reloadButton);
@@ -177,7 +174,7 @@ namespace abschluss2 {
         if (counter > 0) {
             counter = counter - 1;
         } else if (counter == 0 && counterStop == false) {
-          
+
             counterStop = true;
             endscreen();
 
@@ -224,13 +221,14 @@ namespace abschluss2 {
         for (let i: number = 0; i < document.getElementsByTagName("div").length; i++) {
             let div: HTMLDivElement = document.getElementsByTagName("div")[i];
             div.removeEventListener("click", remove);
+            div.removeEventListener("click", remove);
         }
-        
+
         document.getElementById("reloadButton").remove();
-        canvasWidth.style.filter = "blur(5px)";
+        canvasWidth.style.filter = "blur(7px)";
         counterID.style.display = "none";
         punkteAnzeige.style.display = "none";
-        
+
 
         let h2: HTMLHeadingElement = document.createElement("h2");
         h2.innerText = "Deine Punktzahl beträgt " + punkte + " Punkte!";
@@ -238,16 +236,44 @@ namespace abschluss2 {
         h2.style.top = "0";
         h2.style.color = "white";
         h2.style.left = 20 * relation + "px";
-        h2.style.marginTop = "0";
+        h2.style.margin = "0";
         h2.id = "endscreenH2";
+
+
+
+
+
+
+
+
 
         let newGame: HTMLButtonElement = document.createElement("button");
         newGame.addEventListener("click", initialize);
         newGame.innerText = "Neues Spiel";
         newGame.style.position = "absolute";
         newGame.style.top = (590 * heightRel).toString() + "px";
-        newGame.style.left = (955 * relation).toString() + "px";
+        newGame.style.left = (945 * relation).toString() + "px";
         newGame.id = "endscreenButton";
+
+
+        if (window.innerWidth > 1280) {
+            h2.style.fontSize = "3em";
+            h2.style.top = 10 * relation + "px";
+            newGame.style.fontSize = "3em";
+        } else if (window.innerWidth > 768) {
+            h2.style.fontSize = "1.5em";
+            newGame.style.fontSize = "1.2em";
+        } else if (window.innerWidth > 570) {
+            h2.style.fontSize = "1.3em";
+        } else {
+            h2.style.fontSize = "0.7em";
+            h2.style.top = 40 * relation + "px";
+            newGame.style.left = (750 * relation).toString() + "px";
+            newGame.style.fontSize = "0.7em";
+        }
+
+
+
 
         //        document.body.appendChild(div1);
         document.body.appendChild(h2);
@@ -257,12 +283,6 @@ namespace abschluss2 {
     function initialize() {
         document.getElementById("endscreenH2").remove();
         document.getElementById("endscreenButton").remove();
-
-        for (let i: number = 0; i < shapes.length; i++) {
-        shapes[1].init();
-        }
-        
-        
         shapes = [];
         muni = [];
         counter = 10;
@@ -275,7 +295,8 @@ namespace abschluss2 {
             }
         }
 
-
+        counterID.style.display = "inline";
+        punkteAnzeige.style.display = "inline";
 
         shooter();
 
@@ -290,7 +311,7 @@ namespace abschluss2 {
 
             let div: HTMLDivElement = document.getElementsByTagName("div")[i];
             div.addEventListener("click", remove);
-            div.addEventListener("touchstart", remove);
+            div.removeEventListener("touchstart", remove);
 
             div.id = i + "";
 
@@ -334,8 +355,10 @@ namespace abschluss2 {
 
 
 
+        if (counterStop == false) {
+            window.setTimeout(animate, 20);
+        }
 
-        window.setTimeout(animate, 20); //
     }
 
     function remove(_event: Event): void {
@@ -362,9 +385,6 @@ namespace abschluss2 {
             shapes.push(s); //Raumschiff wird in das Array geladen
             s.start();
             addListener();
-
-
-
 
             x.play();
 
