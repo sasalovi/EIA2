@@ -26,6 +26,8 @@ var abschluss2;
         draw() {
             //Platzhalter
         }
+        init() {
+        }
         getRaumschiffTod() {
             return this.RaumschiffTod;
         }

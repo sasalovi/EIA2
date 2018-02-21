@@ -11,7 +11,7 @@ var abschluss2;
             if (this.x > 1280) {
                 this.x = Math.random();
             }
-            if (this.x > 1270) {
+            if (this.x > 1210) {
                 this.clickDiv.style.display = "none";
             }
             else {
@@ -44,6 +44,10 @@ var abschluss2;
             abschluss2.crc2.lineTo(this.x + 50, this.y);
             abschluss2.crc2.fill();
             abschluss2.crc2.closePath();
+        }
+        init() {
+            this.x = 0;
+            this.y = 0;
         }
     }
     abschluss2.Raumschiff = Raumschiff;

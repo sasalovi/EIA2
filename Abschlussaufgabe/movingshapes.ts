@@ -36,6 +36,9 @@ namespace abschluss2 {
         draw(): void {
             //Platzhalter
         }
+        
+        init():void {
+        }
         getRaumschiffTod(): boolean {
             return this.RaumschiffTod;
         }

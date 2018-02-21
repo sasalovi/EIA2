@@ -47,16 +47,16 @@ var abschluss2;
         punkteAnzeige.style.zIndex = "99";
         if (window.innerWidth > 1280) {
             punkteAnzeige.style.fontSize = "2em";
-            punkteAnzeige.style.top = 2 * relation + "%";
+            punkteAnzeige.style.top = 5 * relation + "px";
         }
         else if (window.innerWidth > 768) {
             punkteAnzeige.style.fontSize = "1.5em";
         }
         else if (window.innerWidth > 570) {
-            punkteAnzeige.style.fontSize = "1em";
+            punkteAnzeige.style.fontSize = "0.5em";
         }
         else {
-            punkteAnzeige.style.fontSize = "0.5em";
+            punkteAnzeige.style.fontSize = "0.6em";
         }
         //Himmel
         var skygradient = abschluss2.crc2.createLinearGradient(0, 0, 0, 420);
@@ -137,16 +137,17 @@ var abschluss2;
         }
         if (window.innerWidth > 1280) {
             counterID.style.fontSize = "2em";
-            counterID.style.top = 8 * relation + "%";
+            counterID.style.top = 37 * relation + "px";
         }
         else if (window.innerWidth > 768) {
             counterID.style.fontSize = "1.5em";
         }
         else if (window.innerWidth > 570) {
-            counterID.style.fontSize = "1em";
+            counterID.style.fontSize = "0.5em";
         }
         else {
-            counterID.style.fontSize = "0.5em";
+            counterID.style.fontSize = "0.6em";
+            counterID.style.top = 40 * relation + "px";
         }
     }
     function endscreen() {
@@ -155,9 +156,10 @@ var abschluss2;
             let div = document.getElementsByTagName("div")[i];
             div.removeEventListener("click", remove);
         }
-        console.log(document.getElementById("reloadButton"));
         document.getElementById("reloadButton").remove();
         canvasWidth.style.filter = "blur(5px)";
+        counterID.style.display = "none";
+        punkteAnzeige.style.display = "none";
         let h2 = document.createElement("h2");
         h2.innerText = "Deine Punktzahl beträgt " + punkte + " Punkte!";
         h2.style.position = "absolute";
@@ -170,8 +172,8 @@ var abschluss2;
         newGame.addEventListener("click", initialize);
         newGame.innerText = "Neues Spiel";
         newGame.style.position = "absolute";
-        newGame.style.top = 40 * relation + "px";
-        newGame.style.left = 20 * relation + "px";
+        newGame.style.top = (590 * heightRel).toString() + "px";
+        newGame.style.left = (955 * relation).toString() + "px";
         newGame.id = "endscreenButton";
         //        document.body.appendChild(div1);
         document.body.appendChild(h2);
@@ -180,6 +182,9 @@ var abschluss2;
     function initialize() {
         document.getElementById("endscreenH2").remove();
         document.getElementById("endscreenButton").remove();
+        for (let i = 0; i < shapes.length; i++) {
+            shapes[1].init();
+        }
         shapes = [];
         muni = [];
         counter = 10;

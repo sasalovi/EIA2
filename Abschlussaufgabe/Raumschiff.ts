@@ -16,7 +16,7 @@ namespace abschluss2 {
                 this.x = Math.random();
             }
 
-            if (this.x > 1270) {
+            if (this.x > 1210) {
                 this.clickDiv.style.display = "none";
             } else {
                 this.clickDiv.style.display = "inline"; //Tut nicht was es soll bzw gar nichts
@@ -25,6 +25,7 @@ namespace abschluss2 {
 
 
             this.x += 2;
+
             }
         start(): void {
 
@@ -63,6 +64,13 @@ namespace abschluss2 {
 
             crc2.closePath();
         }
+        
+        init(): void {
+           
+            this.x = 0;
+            this.y = 0;
+            
+            }
 
 
 
