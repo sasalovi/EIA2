@@ -12,6 +12,8 @@ namespace abschluss2 {
 
     export let crc2: CanvasRenderingContext2D; //variable Dateien im selben Namespace zug�nglich machen
 
+
+
     let shapes: Movingshapes[] = [];
     let muni: Munition[] = [];
     var punkte: number = 0;
@@ -48,6 +50,8 @@ namespace abschluss2 {
         if (window.innerHeight > window.innerWidth) {
             alert("Bitte drehe dein Gerät und drücke dann auf OK!");
         }
+        
+        alert("Erledige die UFOs durch einen Klick auf sie. Nachladen kannst du durch Klicken der 'R' Taste");
 
 
 
@@ -96,7 +100,8 @@ namespace abschluss2 {
         b.drawMountain(100, 100);
 
 
-        for (let i: number = 0; i < 10; i++) {
+
+        for (let i: number = 0; i < (Math.floor(Math.random() * 20 + 3)); i++) {
 
             let s: Raumschiff = new Raumschiff(0, 0); //Instanz der Klasse wird erstellt
             shapes.push(s); //Raumschiff wird in das Array geladen
@@ -113,9 +118,6 @@ namespace abschluss2 {
         }
 
         //Nachladebutton generieren für Handy ansicht   
-
-
-
 
         reloadButton.style.position = "absolute";
         reloadButton.style.top = (590 * heightRel).toString() + "px";
@@ -165,10 +167,6 @@ namespace abschluss2 {
 
         animate();
     }
-
-
-
-
 
 
     function startCountdown() {

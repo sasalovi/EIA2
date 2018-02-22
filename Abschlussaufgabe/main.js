@@ -34,6 +34,7 @@ var abschluss2;
         if (window.innerHeight > window.innerWidth) {
             alert("Bitte drehe dein Gerät und drücke dann auf OK!");
         }
+        alert("Erledige die UFOs durch einen Klick auf sie. Nachladen kannst du durch Klicken der 'R' Taste");
         let canvas = document.getElementsByTagName("canvas")[0]; //Array f�r den Fall dass mehrere Canvas vorhanden sind
         abschluss2.crc2 = canvas.getContext("2d");
         //Statische Objekte zeichnen
@@ -66,7 +67,7 @@ var abschluss2;
         abschluss2.crc2.fillRect(0, 0, 1280, 720);
         let b = new abschluss2.Background(0, 0);
         b.drawMountain(100, 100);
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < (Math.floor(Math.random() * 20 + 3)); i++) {
             let s = new abschluss2.Raumschiff(0, 0); //Instanz der Klasse wird erstellt
             shapes.push(s); //Raumschiff wird in das Array geladen
             s.start();
