@@ -2,13 +2,10 @@ namespace abschluss2 {
     export class Movingshapes {
         x: number;
         y: number;
-        RaumschiffTod: boolean = false;
+        raumschiffTod: boolean = false;
         canvasWidth: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("canvas");
         width: number = this.canvasWidth.scrollWidth;
         height: number = this.canvasWidth.scrollHeight;
-       // relation: number = this.width / window.innerWidth;
-       // heightRel: number = this.height / window.innerHeight;
-        
         relation: number = this.width / this.canvasWidth.width;
         heightRel: number = this.height / this.canvasWidth.height;
         canv2: number = this.canvasWidth.width;
@@ -21,11 +18,9 @@ namespace abschluss2 {
         }
 
         update(): void {
-            if (this.RaumschiffTod == false) {
-                this.move(); //this für Zugriff auf inhalte der Klasse
-                this.draw();
-//                alert(this.relation);
-                
+            if (this.raumschiffTod == false) {
+                this.move();
+                this.draw();    
             }
         }
 
@@ -37,26 +32,16 @@ namespace abschluss2 {
             //Platzhalter
         }
         
-        init():void {
-        }
         getRaumschiffTod(): boolean {
-            return this.RaumschiffTod;
+            return this.raumschiffTod;
         }
 
         setRaumschiffTod(_RaumschiffTod: boolean): void {
-            this.RaumschiffTod = _RaumschiffTod;
+            this.raumschiffTod = _RaumschiffTod;
         }
-        moveDiv(i: number) {
-
+        moveDiv(i: number): void {
             let div: HTMLDivElement = document.getElementsByTagName("div")[i];
-            div.style.left = (this.x*this.relation).toString() + "px";
-            
-
-
+            div.style.left = (this.x * this.relation).toString() + "px";
         }
-
-
-
     }
-
 }

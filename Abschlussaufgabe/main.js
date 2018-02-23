@@ -7,17 +7,15 @@ var abschluss2;
     //    
     //Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
     window.addEventListener("load", shooter);
-    window.addEventListener("keydown", reload);
+    window.addEventListener("keydown", reloadKeyR);
     let shapes = [];
     let muni = [];
     var punkte = 0;
     var punkteAnzeige;
-    var clicked = 0;
+    var usedAmmo = 0;
     var maxMun = 6;
-    var munizahl = 0;
-    var counter = 30;
+    var counter = 20;
     var counterID;
-    let counterStop = false;
     var reloadButton = document.createElement("button");
     let canvasWidth;
     let width;
@@ -34,10 +32,10 @@ var abschluss2;
         if (window.innerHeight > window.innerWidth) {
             alert("Bitte drehe dein Gerät und drücke dann auf OK!");
         }
-        alert("Erledige die UFOs durch einen Klick auf sie. Nachladen kannst du durch Klicken der 'R' Taste");
-        let canvas = document.getElementsByTagName("canvas")[0]; //Array f�r den Fall dass mehrere Canvas vorhanden sind
+        alert("Erledige die UFOs durch einen Klick auf sie. Nachladen kannst du durch Klicken der 'R' Taste oder auf die Munition unten rechts");
+        let canvas = document.getElementsByTagName("canvas")[0];
         abschluss2.crc2 = canvas.getContext("2d");
-        //Statische Objekte zeichnen
+        //Punkte Anzeige initialisieren
         punkteAnzeige = document.getElementById("punkte");
         punkteAnzeige.style.position = "absolute";
         punkteAnzeige.style.left = 20 * relation + "px";
@@ -59,27 +57,27 @@ var abschluss2;
         else {
             punkteAnzeige.style.fontSize = "0.6em";
         }
-        //Himmel
-        var skygradient = abschluss2.crc2.createLinearGradient(0, 0, 0, 420);
-        skygradient.addColorStop(0, "#0099ff");
-        skygradient.addColorStop(0.9, "#99ccff");
-        abschluss2.crc2.fillStyle = skygradient;
-        abschluss2.crc2.fillRect(0, 0, 1280, 720);
-        let b = new abschluss2.Background(0, 0);
-        b.drawMountain(100, 100);
+        //Restliche Objekte Zeichnen
+        let b = new abschluss2.Background();
+        b.drawSky();
+        b.drawTree();
+        b.drawStreet();
+        b.drawGrass();
+        //UFO Instanzen erstellen
         for (let i = 0; i < (Math.floor(Math.random() * 20 + 3)); i++) {
-            let s = new abschluss2.Raumschiff(0, 0); //Instanz der Klasse wird erstellt
-            shapes.push(s); //Raumschiff wird in das Array geladen
+            let s = new abschluss2.Raumschiff(0, 0);
+            shapes.push(s);
             s.start();
         }
+        //Munition Instanzen erstellen
         var xOffset = 950;
         for (let i = 0; i < maxMun; i++) {
-            let m = new abschluss2.Munition(xOffset, 0); //Instanz der Klasse wird erstellt
+            let m = new abschluss2.Munition(xOffset, 0);
             muni.push(m);
             m.draw();
             xOffset = xOffset + 50;
         }
-        //Nachladebutton generieren für Handy ansicht   
+        //Nachladebutton generieren für Handy Ansicht   
         reloadButton.style.position = "absolute";
         reloadButton.style.top = (590 * heightRel).toString() + "px";
         reloadButton.style.left = (955 * relation).toString() + "px";
@@ -89,26 +87,8 @@ var abschluss2;
         reloadButton.style.border = "none";
         reloadButton.style.outline = "none";
         reloadButton.style.opacity = "0";
-        reloadButton.addEventListener("click", function () {
-            var r = document.getElementById("reload");
-            r.load();
-            r.play();
-            clicked = 0;
-            munizahl = 0;
-            for (let i = 0; i < muni.length; i++) {
-                muni[i].setRemoveValue(true);
-            }
-        });
-        reloadButton.addEventListener("touchstart", function () {
-            var r = document.getElementById("reload");
-            r.load();
-            r.play();
-            clicked = 0;
-            munizahl = 0;
-            for (let i = 0; i < muni.length; i++) {
-                muni[i].setRemoveValue(true);
-            }
-        });
+        reloadButton.addEventListener("click", reload);
+        reloadButton.addEventListener("touchstart", reload);
         document.body.appendChild(reloadButton);
         addListener();
         startCountdown();
@@ -119,8 +99,8 @@ var abschluss2;
         if (counter > 0) {
             counter = counter - 1;
         }
-        else if (counter == 0 && counterStop == false) {
-            counterStop = true;
+        else {
+            counter = counter - 1;
             endscreen();
         }
         //Counter Styling
@@ -133,9 +113,11 @@ var abschluss2;
         counterID.style.color = "white";
         counterID.innerText = counter.toString() + " Sekunden";
         counterID.style.zIndex = "99";
-        if (counterStop == false) {
+        //Kondition um Timer bei Ablauf der Zeit zu beenden
+        if (counter >= 0) {
             window.setTimeout(startCountdown, 1000);
         }
+        //Responsive Styling
         if (window.innerWidth > 1280) {
             counterID.style.fontSize = "2em";
             counterID.style.top = 37 * relation + "px";
@@ -151,6 +133,67 @@ var abschluss2;
             counterID.style.top = 40 * relation + "px";
         }
     }
+    function addListener() {
+        //Alle vorhandenen DIVs mit EventListenern ausstatten
+        for (let i = 0; i < document.getElementsByTagName("div").length; i++) {
+            let div = document.getElementsByTagName("div")[i];
+            div.addEventListener("click", remove);
+            div.addEventListener("touchstart", remove);
+            div.id = i + "";
+        }
+    }
+    function reloadKeyR(_event) {
+        if (_event.keyCode == 82) {
+            reload();
+        }
+    }
+    function reload() {
+        var r = document.getElementById("reload");
+        r.load();
+        r.play();
+        usedAmmo = 0;
+        for (let i = 0; i < muni.length; i++) {
+            muni[i].setRemoveValue(false); //Färbt Munition wieder rot
+        }
+    }
+    function animate() {
+        abschluss2.crc2.clearRect(0, 0, 1280, 720);
+        abschluss2.crc2.putImageData(image, 0, 0);
+        for (let i = 0; i < shapes.length; i++) {
+            let s = shapes[i];
+            s.update();
+            s.moveDiv(i);
+        }
+        for (let i = 0; i < muni.length; i++) {
+            muni[i].draw();
+        }
+        if (counter >= 0) {
+            window.setTimeout(animate, 20);
+        }
+    }
+    function remove(_event) {
+        if (usedAmmo < maxMun) {
+            //Sound
+            var gunshotAudio = document.getElementById("gunshot");
+            gunshotAudio.load();
+            let id = _event.target;
+            id.style.display = "none";
+            let n = parseInt(id.id);
+            shapes[n].setRaumschiffTod(true); //Raumschiff ausblenden
+            id.removeEventListener("click", remove);
+            id.removeEventListener("touchstart", remove);
+            //Punkte Berechnen und munition abziehen
+            punkte = punkte + 30;
+            punkteAnzeige.innerText = punkte.toString() + " Punkte";
+            muni[usedAmmo].setRemoveValue(true);
+            usedAmmo = usedAmmo + 1;
+            let s = new abschluss2.Raumschiff(0, 0);
+            shapes.push(s);
+            s.start();
+            addListener();
+            gunshotAudio.play();
+        }
+    }
     function endscreen() {
         //Clickflächen aufräumen
         for (let i = 0; i < document.getElementsByTagName("div").length; i++) {
@@ -158,10 +201,12 @@ var abschluss2;
             div.removeEventListener("click", remove);
             div.removeEventListener("click", remove);
         }
+        //Inhalte des Spiels ausblenden
         document.getElementById("reloadButton").remove();
         canvasWidth.style.filter = "blur(7px)";
         counterID.style.display = "none";
         punkteAnzeige.style.display = "none";
+        //Initialisieren des Endscreen
         let h2 = document.createElement("h2");
         h2.innerText = "Deine Punktzahl beträgt " + punkte + " Punkte!";
         h2.style.position = "absolute";
@@ -177,6 +222,7 @@ var abschluss2;
         newGame.style.top = (590 * heightRel).toString() + "px";
         newGame.style.left = (945 * relation).toString() + "px";
         newGame.id = "endscreenButton";
+        //Responsive Styling
         if (window.innerWidth > 1280) {
             h2.style.fontSize = "3em";
             h2.style.top = 10 * relation + "px";
@@ -195,7 +241,6 @@ var abschluss2;
             newGame.style.left = (750 * relation).toString() + "px";
             newGame.style.fontSize = "0.7em";
         }
-        //        document.body.appendChild(div1);
         document.body.appendChild(h2);
         document.body.appendChild(newGame);
     }
@@ -204,10 +249,10 @@ var abschluss2;
         document.getElementById("endscreenButton").remove();
         shapes = [];
         muni = [];
-        counter = 10;
-        counterStop = false;
+        usedAmmo = 0;
+        counter = 20;
         canvasWidth.style.filter = "blur(0px)";
-        for (let i = 10; i == document.getElementsByTagName("div").length; i--) {
+        for (let i = document.getElementsByTagName("div").length; i == document.getElementsByTagName("div").length; i--) {
             if (i > 0) {
                 let e = document.getElementsByTagName("div")[i - 1];
                 e.remove();
@@ -216,64 +261,6 @@ var abschluss2;
         counterID.style.display = "inline";
         punkteAnzeige.style.display = "inline";
         shooter();
-    }
-    function addListener() {
-        for (let i = 0; i < document.getElementsByTagName("div").length; i++) {
-            let div = document.getElementsByTagName("div")[i];
-            div.addEventListener("click", remove);
-            div.removeEventListener("touchstart", remove);
-            div.id = i + "";
-        }
-    }
-    function reload(_event) {
-        if (_event.keyCode == 82) {
-            var r = document.getElementById("reload");
-            r.load();
-            r.play();
-            clicked = 0;
-            munizahl = 0;
-            for (let i = 0; i < muni.length; i++) {
-                muni[i].setRemoveValue(true);
-            }
-        }
-    }
-    function animate() {
-        abschluss2.crc2.clearRect(0, 0, 1280, 720); // hier Hintergrund restaurieren
-        abschluss2.crc2.putImageData(image, 0, 0); //gespeichertes Bild wieder einf�gen
-        for (let i = 0; i < shapes.length; i++) {
-            let s = shapes[i];
-            s.update();
-            s.moveDiv(i);
-        }
-        for (let i = 0; i < muni.length; i++) {
-            muni[i].draw();
-        }
-        if (counterStop == false) {
-            window.setTimeout(animate, 20);
-        }
-    }
-    function remove(_event) {
-        if (clicked < maxMun) {
-            var x = document.getElementById("gunshot");
-            x.load();
-            let id = _event.target;
-            id.style.display = "none";
-            let n = parseInt(id.id);
-            shapes[n].setRaumschiffTod(true);
-            id.removeEventListener("click", remove);
-            id.removeEventListener("touchstart", remove);
-            //Punkte Berechnen und munition abziehen
-            punkte = punkte + 30;
-            punkteAnzeige.innerText = punkte.toString() + " Punkte";
-            clicked = clicked + 1;
-            muni[munizahl].setRemoveValue(false);
-            munizahl++;
-            let s = new abschluss2.Raumschiff(0, 0); //Instanz der Klasse wird erstellt
-            shapes.push(s); //Raumschiff wird in das Array geladen
-            s.start();
-            addListener();
-            x.play();
-        }
     }
 })(abschluss2 || (abschluss2 = {}));
 //# sourceMappingURL=main.js.map

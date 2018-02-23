@@ -2,8 +2,7 @@ var abschluss2;
 (function (abschluss2) {
     class Munition {
         constructor(_x, _y) {
-            this.removeValue = true;
-            this.button = document.createElement("div");
+            this.removeValue = false;
             this.x = _x;
             this.y = _y;
         }
@@ -11,7 +10,7 @@ var abschluss2;
             this.removeValue = n;
         }
         draw() {
-            if (this.removeValue == true) {
+            if (this.removeValue == false) {
                 abschluss2.crc2.fillStyle = "red";
                 abschluss2.crc2.fillRect(this.x, 630, 30, 70);
                 abschluss2.crc2.fillStyle = "yellow";

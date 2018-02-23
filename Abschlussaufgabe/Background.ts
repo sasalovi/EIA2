@@ -1,39 +1,35 @@
 namespace abschluss2 {
     export class Background {
-        x: number;
-        y: number;
 
-        constructor(_x: number, _y: number) {
-            this.x = _x;
-            this.y = _y;
+        
+        drawSky(): void {           
+           var skygradient: any = crc2.createLinearGradient(0, 0, 0, 420);
+           skygradient.addColorStop(0, "#0099ff");
+           skygradient.addColorStop(0.9, "#99ccff");
+           crc2.fillStyle = skygradient;
+           crc2.fillRect(0, 0, 1280, 720);
         }
-
-
-
-        drawMountain(x: number, y: number): void {
-
-
-
+        
+        
+        
+        drawTree(): void {
             //Bäume links
             for (let i: number = 0; i < 620; i++) {
                 crc2.fillStyle = "brown";
-                crc2.fillRect(i-5, 420, 10, -90);
-
+                crc2.fillRect(i - 5, 420, 10, -90);
                 crc2.beginPath();
                 crc2.fillStyle = "green";
                 crc2.arc(i + 10, 360, 15, 0, 2 * Math.PI);
                 crc2.arc(i - 10, 360, 15, 0, 2 * Math.PI);
                 crc2.arc(i, 340, 15, 0, 2 * Math.PI);
                 crc2.fill();
-                i = i + Math.random() * 150;
-                
+                i = i + Math.random() * 150;           
             }
-
 
             //Bäume rechts
             for (let i: number = 660; i < 1280; i++) {
                 crc2.fillStyle = "brown";
-                crc2.fillRect(i-5, 420, 10, -90);
+                crc2.fillRect(i - 5, 420, 10, -90);
                 crc2.beginPath();
                 crc2.fillStyle = "green";
                 crc2.arc(i + 10, 360, 15, 0, 2 * Math.PI);
@@ -42,8 +38,9 @@ namespace abschluss2 {
                 crc2.fill();
                 i = i + Math.random() * 150;
             }
-
-
+        }   
+        
+        drawStreet(): void {
             //Weg
             crc2.fillStyle = "grey";
             crc2.beginPath();
@@ -55,7 +52,9 @@ namespace abschluss2 {
             crc2.strokeStyle = "darkgrey";
             crc2.lineWidth = 5;
             crc2.stroke();
-
+        }
+            
+        drawGrass(): void {                 
             //Gras Links
             crc2.fillStyle = "green";
             crc2.beginPath();
@@ -92,12 +91,6 @@ namespace abschluss2 {
                 crc2.lineTo(i + 1, 420 - Math.random() * 8);
                 crc2.stroke();
             }
-
-
-
         }
-
-
     }
-
 }

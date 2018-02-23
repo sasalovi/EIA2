@@ -1,11 +1,14 @@
 var abschluss2;
 (function (abschluss2) {
     class Background {
-        constructor(_x, _y) {
-            this.x = _x;
-            this.y = _y;
+        drawSky() {
+            var skygradient = abschluss2.crc2.createLinearGradient(0, 0, 0, 420);
+            skygradient.addColorStop(0, "#0099ff");
+            skygradient.addColorStop(0.9, "#99ccff");
+            abschluss2.crc2.fillStyle = skygradient;
+            abschluss2.crc2.fillRect(0, 0, 1280, 720);
         }
-        drawMountain(x, y) {
+        drawTree() {
             //B�ume links
             for (let i = 0; i < 620; i++) {
                 abschluss2.crc2.fillStyle = "brown";
@@ -30,6 +33,8 @@ var abschluss2;
                 abschluss2.crc2.fill();
                 i = i + Math.random() * 150;
             }
+        }
+        drawStreet() {
             //Weg
             abschluss2.crc2.fillStyle = "grey";
             abschluss2.crc2.beginPath();
@@ -41,6 +46,8 @@ var abschluss2;
             abschluss2.crc2.strokeStyle = "darkgrey";
             abschluss2.crc2.lineWidth = 5;
             abschluss2.crc2.stroke();
+        }
+        drawGrass() {
             //Gras Links
             abschluss2.crc2.fillStyle = "green";
             abschluss2.crc2.beginPath();

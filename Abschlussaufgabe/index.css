@@ -1,7 +1,7 @@
 /* <!-- Aufgabe: Abschlussaufgabe --> */
 /* <!-- Name: Markus Sasalovici --> */
 /* <!-- Matrikel: 256027 --> */
-/* <!-- Datum: 22.02.2018 --> */
+/* <!-- Datum: 23.02.2018 --> */
 
 /* <!-- Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert. --> */
 
@@ -13,27 +13,19 @@ canvas {
 	width: 70%;
 }
 
-
 @media screen and (min-width: 570px) { 
-	
 	canvas {
 		width: 70%;
 	}
 }
 
-
-
 @media screen and (min-width: 768px) { 
-	
 	canvas {
 		width: 60%;
 	}
 }
 
-
-
 @media screen and (min-width: 1024px) { 
-	
 	canvas {
 		width: 70%;
 	}

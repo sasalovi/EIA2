@@ -2,12 +2,10 @@ var abschluss2;
 (function (abschluss2) {
     class Movingshapes {
         constructor(_x, _y) {
-            this.RaumschiffTod = false;
+            this.raumschiffTod = false;
             this.canvasWidth = document.getElementById("canvas");
             this.width = this.canvasWidth.scrollWidth;
             this.height = this.canvasWidth.scrollHeight;
-            // relation: number = this.width / window.innerWidth;
-            // heightRel: number = this.height / window.innerHeight;
             this.relation = this.width / this.canvasWidth.width;
             this.heightRel = this.height / this.canvasWidth.height;
             this.canv2 = this.canvasWidth.width;
@@ -15,8 +13,8 @@ var abschluss2;
             this.y = _y;
         }
         update() {
-            if (this.RaumschiffTod == false) {
-                this.move(); //this f�r Zugriff auf inhalte der Klasse
+            if (this.raumschiffTod == false) {
+                this.move();
                 this.draw();
             }
         }
@@ -26,13 +24,11 @@ var abschluss2;
         draw() {
             //Platzhalter
         }
-        init() {
-        }
         getRaumschiffTod() {
-            return this.RaumschiffTod;
+            return this.raumschiffTod;
         }
         setRaumschiffTod(_RaumschiffTod) {
-            this.RaumschiffTod = _RaumschiffTod;
+            this.raumschiffTod = _RaumschiffTod;
         }
         moveDiv(i) {
             let div = document.getElementsByTagName("div")[i];
