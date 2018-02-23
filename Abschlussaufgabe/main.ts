@@ -288,6 +288,7 @@ namespace abschluss2 {
         muni = [];
         usedAmmo = 0;
         counter = 20;
+        punkte = 0;
         canvasWidth.style.filter = "blur(0px)";
         for (let i: number = document.getElementsByTagName("div").length; i == document.getElementsByTagName("div").length; i--) {
             if (i > 0) {
